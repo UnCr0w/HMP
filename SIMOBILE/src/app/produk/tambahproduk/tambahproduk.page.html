@@ -1,13 +1,47 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tambahproduk</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/produk"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tambah Produk Baru</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tambahproduk</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Nama Produk</ion-label>
+    <ion-input [(ngModel)]="new_nama" type="text" placeholder="Contoh: Es Teh Manis"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Harga Beli </ion-label>
+    <ion-input [(ngModel)]="new_hargaBeli" type="number" min="0"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Harga Jual</ion-label>
+    <ion-input [(ngModel)]="new_hargaJual" type="number" min="0"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Stok Initial</ion-label>
+    <ion-input [(ngModel)]="new_stok" type="number" min="0"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Kategori</ion-label>
+    <ion-select [(ngModel)]="new_kategori">
+      <ion-select-option value="Makanan">Makanan</ion-select-option>
+      <ion-select-option value="Minuman">Minuman</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">URL Foto</ion-label>
+    <ion-input [(ngModel)]="new_fotoUrl" type="url" placeholder="https://..."></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="submitProduct()" class="ion-margin-top">
+    Simpan Produk
+  </ion-button>
 </ion-content>
