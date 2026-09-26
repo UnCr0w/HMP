@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../../services/product';
+import { Product, ProductService } from '../../services/product';
 
 @Component({
   selector: 'app-detailproduk',
@@ -13,14 +13,15 @@ export class DetailprodukPage implements OnInit {
   products: any[] = [];
 
   new_nama: string = "";
-  new_harga: number = 0;
+  new_hargaBeli: number = 0;
+  new_hargaJual: number = 0;
   new_stok: number = 0;
   new_tipe:string ="";
   new_url: string = "";
   arr_tipe: string[] = [];
   public alertButtons = ['OK']
 
-  constructor(private route: ActivatedRoute, private productService: Product) { }
+  constructor(private route: ActivatedRoute, private productService: ProductService) { }
 
   ngOnInit() {
     this.products = this.productService.products;
@@ -31,9 +32,11 @@ export class DetailprodukPage implements OnInit {
     this.setProperties()
   }
 
+  
   setProperties(){
     this.new_nama = this.products[this.id].nama;
-    this.new_harga = this.products[this.id].harga;
+    this.new_hargaBeli = this.products[this.id].hargaBeli;
+    this.new_hargaJual = this.products[this.id].hargaJual;
     this.new_stok = this.products[this.id].stok;
     this.new_tipe = this.products[this.id].tipe;
     this.new_url = this.products[this.id].url;
@@ -58,8 +61,8 @@ export class DetailprodukPage implements OnInit {
   editProduk():string {
     if(this.new_nama == "" ){
       return "Nama tidak boleh kosong."
-    } else if (this.new_harga <= 0){
-      return "Harga tidak boleh 0 atau negatif."
+    } else if (this.new_hargaBeli <= 0 || this.new_hargaJual <= 0) {
+      return "Harga beli dan harga jual harus lebih besar dari 0.";
     } else if (this.new_stok < 0){
       return "Stok tidak boleh negatif."
     } else if (this.new_tipe == ""){
@@ -67,7 +70,7 @@ export class DetailprodukPage implements OnInit {
     } else if (this.new_url == ""){
       return "Link foto tidak boleh kosong."
     } else{
-      this.productService.saveProduct(this.id, this.new_nama, this.new_harga, this.new_stok, this.new_tipe, this.new_url)
+      this.productService.saveProduct(this.id, this.new_nama, this.new_hargaBeli, this.new_hargaJual, this.new_stok, this.new_tipe, this.new_url)
       return "Perubahan berhasil disimpan."
     }
     

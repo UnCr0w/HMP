@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ProductService } from '../../services/product';
+import { Component } from '@angular/core';
+import { Product, ProductService } from '../../services/product';
 
 @Component({
   selector: 'app-tambahproduk',
@@ -8,32 +7,40 @@ import { ProductService } from '../../services/product';
   styleUrls: ['./tambahproduk.page.scss'],
   standalone: false,
 })
-export class TambahprodukPage implements OnInit {
+export class TambahprodukPage {
+  nama: string = '';
+  hargaBeli: number = 0;
+  hargaJual: number = 0;
+  stok: number = 0;
+  tipe: string = 'Snack';
+  url: string = '';
 
-  new_nama: string = '';
-  new_hargaBeli: number = 7000;  // Modal/Buy price
-  new_hargaJual: number = 10000; // Sell price
-  new_stok: number = 10;
-  new_kategori: string = 'Makanan';
-  new_fotoUrl: string = '';
+  arr_tipe: string[] = ["Snack", "Makanan", "Minuman", "Bahan Pokok", "Kebutuhan Rumah"];
+  public alertButtons = ['OK'];
 
-  constructor(
-    private productService: ProductService,
-    private router: Router
-  ) {}
+  constructor(private productService: ProductService) {}
 
-  ngOnInit() {}
-
-  submitProduct() {
-    this.productService.addProduct(
-      this.new_nama,
-      Number(this.new_hargaBeli),
-      Number(this.new_hargaJual),
-      Number(this.new_stok),
-      this.new_kategori,
-      this.new_fotoUrl || ''
-    );
-
-    this.router.navigate(['/produk']);
+  tambahProduk(): string {
+    if (this.nama.trim() === "") {
+      return "Nama tidak boleh kosong.";
+    } else if (this.hargaBeli <= 0 || this.hargaJual <= 0) {
+      return "Harga beli dan harga jual harus lebih besar dari 0.";
+    } else if (this.stok < 0) {
+      return "Stok tidak boleh negatif.";
+    } else if (this.tipe === "") {
+      return "Tipe tidak boleh kosong.";
+    } else if (this.url.trim() === "") {
+      return "Link foto tidak boleh kosong.";
+    } else {
+      this.productService.addProduct(
+        this.nama,
+        this.hargaBeli,
+        this.hargaJual,
+        this.stok,
+        this.tipe,
+        this.url
+      );
+      return "Produk berhasil ditambahkan.";
+    }
   }
 }

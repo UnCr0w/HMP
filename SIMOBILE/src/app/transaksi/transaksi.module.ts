@@ -13,7 +13,7 @@ import { TransaksiPage } from './transaksi.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TransaksiPageRoutingModule
+    TransaksiPageRoutingModule,
   ],
   declarations: [TransaksiPage]
 })
