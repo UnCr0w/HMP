@@ -56,28 +56,17 @@ export class ProdukPage implements OnInit {
 
   easeUp() {
     const contentEleement = document.querySelector('#content') as HTMLElement;
-    const animation1 = this.animationCtrl
+    const animation = this.animationCtrl
       .create()
       .addElement(contentEleement)
       .duration(800) // Animation duration in milliseconds
       .iterations(1) // do animation 3 times
       .keyframes([
-        { offset: 0, opacity: '0', transform: 'translate(0, 50px)' },
-        { offset: 1, opacity: '1' },
+        { offset: 0, transform: 'translate(0, 10px)' },
+        { offset: 1,},
       ]);
-    animation1.play();
+    animation.play();
 
-    const searchElement = document.querySelector('#searchbar') as HTMLElement;
-    const animation2 = this.animationCtrl
-      .create()
-      .addElement(searchElement)
-      .duration(1000) // Animation duration in milliseconds
-      .iterations(1) // do animation 3 times
-      .keyframes([
-        { offset: 0, opacity: '0',},
-        { offset: 1, opacity: '1',},
-      ]);
-    animation2.play();
   }
 
 }
