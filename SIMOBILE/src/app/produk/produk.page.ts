@@ -1,45 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService, Product } from '../services/product'; 
+import { Product } from '../services/product';
 
 @Component({
-  selector: 'app-produk',
-  templateUrl: './produk.page.html',
-  styleUrls: ['./produk.page.scss'],
+  selector: 'app-produk',
+  templateUrl: './produk.page.html',
+  styleUrls: ['./produk.page.scss'],
   standalone: false,
 })
 export class ProdukPage implements OnInit {
-  products: Product[] = [];
-  searchTerm: string = '';
-  defaultImage: string = 'assets/placeholder.png';
 
-  constructor(private productService: ProductService) {} 
+  products: any[] = [];
+  constructor(private productService: Product) { }
 
-  ngOnInit() {
-    this.products = this.productService.getProducts(); 
-  }
-
-  ionViewWillEnter() {
-    this.products = this.productService.getProducts();
-  }
-  loadProducts() {
-    this.products = this.productService.getProducts();
+  ngOnInit() {
+    this.products = this.productService.products;
   }
 
-  
-  get filteredProducts(): Product[] {
-    const term = this.searchTerm.toLowerCase().trim();
-    if (!term) {
-      return this.products;
+  chunkArray(arr: any[], chunkSize: number): any[][] {
+    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      result.push(arr.slice(i, i + chunkSize));
     }
-    return this.products.filter(p => 
-      p.nama.toLowerCase().includes(term) || 
-      p.kategori.toLowerCase().includes(term)
-    );
+    return result;
   }
 
- 
-  addToCart(product: Product, event: Event): void {
-    event.stopPropagation(); 
-    event.preventDefault();
+  setBadge(type: string): string {
+    if (type == "Snack") {
+      return "warning";
+    } else if (type == "Makanan") {
+      return "danger";
+    } else if (type == "Bahan Pokok") {
+      return "tertiary";
+    } else if (type == "Kebutuhan Rumah") {
+      return "success"
+    } else if (type = "Minuman") {
+      return "primary";
+    }
+    return "";
   }
-} 
+
+
+}
