@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../services/product';
 
 @Component({
   selector: 'app-produk',
@@ -8,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdukPage implements OnInit {
 
-  constructor() { }
+  products: any[] = [];
+  constructor(private productService: Product) { }
 
   ngOnInit() {
+    this.products = this.productService.products;
   }
+
+  chunkArray(arr: any[], chunkSize: number): any[][] {
+    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;
+  }
+
+  setBadge(type: string): string {
+    if (type == "Snack") {
+      return "warning";
+    } else if (type == "Makanan") {
+      return "danger";
+    } else if (type == "Bahan Pokok") {
+      return "tertiary";
+    } else if (type == "Kebutuhan Rumah") {
+      return "success"
+    } else if (type = "Minuman") {
+      return "primary";
+    }
+    return "";
+  }
+
 
 }
