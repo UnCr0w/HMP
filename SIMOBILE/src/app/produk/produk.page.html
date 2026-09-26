@@ -17,31 +17,33 @@
   </ion-header>
 
   <ion-grid>
-    <ion-item>
+    <ion-item id="searchbar">
       <ion-input labelPlacement="end" placeholder="Cari Produk" [(ngModel)]="keyword">
       </ion-input>
       <ion-icon name="search-outline"></ion-icon>
     </ion-item>
 
-    <ion-row *ngFor="let product2 of chunkArray(products, 3); let i = index">
-      <ion-col *ngFor="let product of product2; let i2 = index" size="4-6-12">
-        <ion-list routerLink="detailproduk/{{i*3 + i2}}">
-          <ion-header [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 20}">
-            {{product.nama}}
-            <ion-chip color="{{setBadge(product.tipe)}}">
-              {{product.tipe}}
-            </ion-chip>
-          </ion-header>
-          <ion-img [src]="product.url" [ngStyle]="{'margin.px' : 20, 'width.px':450, 'height.px':450}"></ion-img>
-          <ion-item>
-            Price: Rp{{product.harga}}
-          </ion-item>
-          <ion-item>
-            Stock: {{product.stok}}
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
+    <div id="content">
+      <ion-row *ngFor="let product2 of chunkArray(products, 3); let i = index">
+        <ion-col *ngFor="let product of product2; let i2 = index" size="4-6-12">
+          <ion-list routerLink="detailproduk/{{i*3 + i2}}">
+            <ion-header [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 20}">
+              {{product.nama}}
+              <ion-chip color="{{setBadge(product.tipe)}}">
+                {{product.tipe}}
+              </ion-chip>
+            </ion-header>
+            <ion-img [src]="product.url" [ngStyle]="{'margin.px' : 20, 'width.px':450, 'height.px':450}"></ion-img>
+            <ion-item>
+              Price: Rp{{product.harga}}
+            </ion-item>
+            <ion-item>
+              Stock: {{product.stok}}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 
 

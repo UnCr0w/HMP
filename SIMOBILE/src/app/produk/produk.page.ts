@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../services/product';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-produk',
@@ -12,10 +13,14 @@ export class ProdukPage implements OnInit {
   products: any[] = [];
   keyword: string = "";
   
-  constructor(private productService: Product) { }
+  constructor(private productService: Product, private animationCtrl: AnimationController) { }
 
   ngOnInit() {
     this.products = this.productService.products;  
+  }
+
+  ionViewDidEnter() {
+    this.easeUp()
   }
 
   chunkArray(arr: any[], chunkSize: number): any[][] {
@@ -30,6 +35,7 @@ export class ProdukPage implements OnInit {
     for (let i = 0; i < temp_product.length; i += chunkSize) {
       result.push(temp_product.slice(i, i + chunkSize));
     }
+
     return result;
   }
 
@@ -46,6 +52,32 @@ export class ProdukPage implements OnInit {
       return "primary";
     }
     return "";
+  }
+
+  easeUp() {
+    const contentEleement = document.querySelector('#content') as HTMLElement;
+    const animation1 = this.animationCtrl
+      .create()
+      .addElement(contentEleement)
+      .duration(800) // Animation duration in milliseconds
+      .iterations(1) // do animation 3 times
+      .keyframes([
+        { offset: 0, opacity: '0', transform: 'translate(0, 50px)' },
+        { offset: 1, opacity: '1' },
+      ]);
+    animation1.play();
+
+    const searchElement = document.querySelector('#searchbar') as HTMLElement;
+    const animation2 = this.animationCtrl
+      .create()
+      .addElement(searchElement)
+      .duration(1000) // Animation duration in milliseconds
+      .iterations(1) // do animation 3 times
+      .keyframes([
+        { offset: 0, opacity: '0',},
+        { offset: 1, opacity: '1',},
+      ]);
+    animation2.play();
   }
 
 }
