@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tambahproduk</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tambah Produk</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +13,83 @@
       <ion-title size="large">tambahproduk</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 40}">
+        {{new_nama}}
+        <ion-chip *ngIf="new_tipe != ''" color="{{setBadge(new_tipe)}}">
+          {{new_tipe}}
+        </ion-chip>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-col>
+            <ion-label>Nama:</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input [(ngModel)]="new_nama"></ion-input>
+          </ion-col>
+        </ion-item>
+
+        <ion-item>
+          <ion-col>
+            <ion-label>Harga:</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input type="number" [(ngModel)]="new_harga"></ion-input>
+          </ion-col>
+        </ion-item>
+
+        <ion-item>
+          <ion-col>
+            <ion-label>Stok:</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input type="number" [(ngModel)]="new_stok"></ion-input>
+          </ion-col>
+        </ion-item>
+
+        <ion-item>
+          <ion-col>
+            <ion-label>Tipe:</ion-label>
+          </ion-col>
+
+          <ion-col size="8">
+            <ion-select labelPlacement="stacked" placeholder="{{new_tipe}}" [(ngModel)]="new_tipe">
+              <ion-select-option *ngFor="let tipe of arr_tipe" [value]="tipe">{{tipe}}
+              </ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-item>
+
+        <ion-item>
+          <ion-col>
+            <ion-label>URL:</ion-label>
+          </ion-col>
+
+          <ion-col size="8">
+            <ion-input type="url" labelPlacement="floating" label="URL Foto: " [(ngModel)]="new_url"></ion-input>
+          </ion-col>
+        </ion-item>
+
+        <ion-item>
+          <ion-img [src]="new_url" [ngStyle]="{'margin-top.px':10}"></ion-img>
+        </ion-item>
+
+        <ion-item>
+          <ion-button id="btnSimpan" (click)="addProduk()">Tambah
+            <ion-alert trigger="btnSimpan" header="Tambah Produk" message="{{pesan}}"
+              [buttons]="alertButtons"></ion-alert>
+          </ion-button>
+        </ion-item>
+
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

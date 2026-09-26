@@ -10,16 +10,25 @@ import { Product } from '../services/product';
 export class ProdukPage implements OnInit {
 
   products: any[] = [];
+  keyword: string = "";
+  
   constructor(private productService: Product) { }
 
   ngOnInit() {
-    this.products = this.productService.products;
+    this.products = this.productService.products;  
   }
 
   chunkArray(arr: any[], chunkSize: number): any[][] {
+    var temp_product = [];
+    for (let i = 0; i < arr.length; i++) {
+      if ((arr[i].nama.toLowerCase()).includes(this.keyword.toLowerCase()) || this.keyword == "") {
+        temp_product.push(arr[i]);
+      }
+    }
+
     const result = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      result.push(arr.slice(i, i + chunkSize));
+    for (let i = 0; i < temp_product.length; i += chunkSize) {
+      result.push(temp_product.slice(i, i + chunkSize));
     }
     return result;
   }
@@ -38,6 +47,5 @@ export class ProdukPage implements OnInit {
     }
     return "";
   }
-
 
 }
