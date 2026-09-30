@@ -11,49 +11,33 @@ import { AnimationController } from '@ionic/angular';
 export class ProdukPage implements OnInit {
 
   products: any[] = [];
+  arr_tipe: string[] = []
   keyword: string = "";
+  tipe: string = "Semua";
+
+  public temp_product: any[] = [];
+  
   
   constructor(private productService: Product, private animationCtrl: AnimationController) { }
 
   ngOnInit() {
     this.products = this.productService.products;  
+    this.arr_tipe = ["Semua"] ;
+    this.arr_tipe = this.arr_tipe.concat(this.productService.arr_tipe);
   }
 
   ionViewDidEnter() {
     this.easeUp()
   }
 
-  chunkArray(arr: any[], chunkSize: number): any[][] {
-    var temp_product = [];
-    for (let i = 0; i < arr.length; i++) {
-      if ((arr[i].nama.toLowerCase()).includes(this.keyword.toLowerCase()) || this.keyword == "") {
-        temp_product.push(arr[i]);
-      }
-    }
-
-    const result = [];
-    for (let i = 0; i < temp_product.length; i += chunkSize) {
-      result.push(temp_product.slice(i, i + chunkSize));
-    }
-
-    return result;
+  badge(type: string):string{
+    return this.productService.setBadge(type);
   }
 
-  setBadge(type: string): string {
-    if (type == "Snack") {
-      return "warning";
-    } else if (type == "Makanan") {
-      return "danger";
-    } else if (type == "Bahan Pokok") {
-      return "tertiary";
-    } else if (type == "Kebutuhan Rumah") {
-      return "success"
-    } else if (type = "Minuman") {
-      return "primary";
-    }
-    return "";
+  
+  filter(): any[]{
+    return this.productService.filterProduct(this.keyword, this.tipe);
   }
-
   easeUp() {
     const contentEleement = document.querySelector('#content') as HTMLElement;
     const animation = this.animationCtrl

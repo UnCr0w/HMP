@@ -90,26 +90,61 @@ export class Product {
 
     ]
 
-    saveProduct(id:number, n_nama:string, n_harga:number, n_stok:number, n_tipe:string, n_url:string){
-        this.products[id].nama = n_nama; 
-        this.products[id].harga = n_harga; 
-        this.products[id].stok = n_stok; 
-        this.products[id].tipe = n_tipe; 
-        this.products[id].url = n_url; 
+    temp_products: any[] = this.products;
+    arr_tipe: string[] = ["Snack", "Makanan", "Minuman", "Bahan Pokok", "Kebutuhan Rumah"];
+
+    saveProduct(id: number, n_nama: string, n_harga: number, n_stok: number, n_tipe: string, n_url: string) {
+        this.products[id].nama = n_nama;
+        this.products[id].harga = n_harga;
+        this.products[id].stok = n_stok;
+        this.products[id].tipe = n_tipe;
+        this.products[id].url = n_url;
     }
 
-    addProduct(n_nama:string, n_harga:number, n_stok:number, n_tipe:string, n_url:string){
+    addProduct(n_nama: string, n_harga: number, n_stok: number, n_tipe: string, n_url: string) {
         this.products.push({
-            nama: n_nama, 
-            harga: n_harga, 
-            stok: n_stok, 
-            tipe: n_tipe, 
+            nama: n_nama,
+            harga: n_harga,
+            stok: n_stok,
+            tipe: n_tipe,
             url: n_url
         })
     }
 
-    deleteProduct(id:number){
-        
+    deleteProduct(id: number) {
+
     }
 
+    setBadge(type: string): string {
+        if (type == "Snack") {
+            return "warning";
+        } else if (type == "Makanan") {
+            return "danger";
+        } else if (type == "Bahan Pokok") {
+            return "tertiary";
+        } else if (type == "Kebutuhan Rumah") {
+            return "success"
+        } else if (type = "Minuman") {
+            return "primary";
+        }
+        return "";
+    }
+
+    filterProduct(keyword: string, category: string): any[] {
+        this.temp_products = [];
+        if (keyword.trim() == "" && category == "Semua") {
+            this.temp_products = this.products;
+        } else {
+            for (let i = 0; i < this.products.length; i++) {
+                if ((this.products[i].nama.toLowerCase()).includes(keyword.trim().toLowerCase())) {
+                    if (category == "Semua" || category == this.products[i].tipe) {
+                        this.temp_products.push(this.products[i]);
+                    }
+                }
+            }
+        }
+
+        return this.temp_products;
+
+    }
 }

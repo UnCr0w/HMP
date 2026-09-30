@@ -15,29 +15,19 @@ export class TambahprodukPage implements OnInit {
   new_stok: number = 0;
   new_tipe: string = "";
   new_url: string = "";
-  arr_tipe: string[] = ["Snack", "Makanan", "Minuman", "Bahan Pokok", "Kebutuhan Rumah"];
-  
+  arr_tipe: string[] = []
+
   public alertButtons = ['OK'];
-  pesan:string="";
+  pesan: string = "";
 
   constructor(private router: Router, private productService: Product) { }
 
   ngOnInit() {
+    this.arr_tipe = this.productService.arr_tipe;
   }
 
-  setBadge(type: string): string {
-    if (type == "Snack") {
-      return "warning";
-    } else if (type == "Makanan") {
-      return "danger";
-    } else if (type == "Bahan Pokok") {
-      return "tertiary";
-    } else if (type == "Kebutuhan Rumah") {
-      return "success"
-    } else if (type = "Minuman") {
-      return "primary";
-    }
-    return "";
+  badge(type: string): string {
+    return this.productService.setBadge(type);
   }
 
   addProduk() {
@@ -54,7 +44,13 @@ export class TambahprodukPage implements OnInit {
     } else {
       this.productService.addProduct(this.new_nama, this.new_harga, this.new_stok, this.new_tipe, this.new_url)
       this.pesan = "Produk berhasil ditambahkan."
-      this.router.navigate(['/produk']);      
+      this.new_nama = "";
+      this.new_harga = 0;
+      this.new_stok = 0; 
+      this.new_tipe = ""; 
+      this.new_url = "";
+      
+      //this.router.navigate(['/produk']);
     }
   }
 
