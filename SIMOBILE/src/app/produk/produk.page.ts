@@ -11,23 +11,22 @@ import { AnimationController } from '@ionic/angular';
 export class ProdukPage implements OnInit {
 
   products: any[] = [];
-  arr_tipe: string[] = []
+  arr_kategori: string[] = []
   keyword: string = "";
-  tipe: string = "Semua";
+  kategori: string = "Semua";
 
   public temp_product: any[] = [];
-  
   
   constructor(private productService: Product, private animationCtrl: AnimationController) { }
 
   ngOnInit() {
     this.products = this.productService.products;  
-    this.arr_tipe = ["Semua"] ;
-    this.arr_tipe = this.arr_tipe.concat(this.productService.arr_tipe);
+    this.arr_kategori = ["Semua"] ;
+    this.arr_kategori = this.arr_kategori.concat(this.productService.arr_kategori);
   }
 
   ionViewDidEnter() {
-    this.easeUp()
+    //this.easeUp()
   }
 
   badge(type: string):string{
@@ -36,21 +35,21 @@ export class ProdukPage implements OnInit {
 
   
   filter(): any[]{
-    return this.productService.filterProduct(this.keyword, this.tipe);
+    return this.productService.filterProduct(this.keyword, this.kategori);
   }
-  easeUp() {
-    const contentEleement = document.querySelector('#content') as HTMLElement;
-    const animation = this.animationCtrl
-      .create()
-      .addElement(contentEleement)
-      .duration(800) // Animation duration in milliseconds
-      .iterations(1) // do animation 3 times
-      .keyframes([
-        { offset: 0, transform: 'translate(0, 10px)' },
-        { offset: 1,},
-      ]);
-    animation.play();
+  // easeUp() {
+  //   const contentEleement = document.querySelector('#content') as HTMLElement;
+  //   const animation = this.animationCtrl
+  //     .create()
+  //     .addElement(contentEleement)
+  //     .duration(800) // Animation duration in milliseconds
+  //     .iterations(1) // do animation 3 times
+  //     .keyframes([
+  //       { offset: 0, transform: 'translate(0, 10px)' },
+  //       { offset: 1,},
+  //     ]);
+  //   animation.play();
 
-  }
+  // }
 
 }

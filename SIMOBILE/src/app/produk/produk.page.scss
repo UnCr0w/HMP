@@ -7,40 +7,53 @@
     // height: 55px;
 }
 
-#search-bar {
+#search-bar{
+    //width: calc(100% - 20% - 20px);
+    //border: 2px solid white;
+}
+#search-bar ion-select {
+    float: left;
+    text-align: center;
+    margin: 0px 10px;
+    width: 200px;
+    height: 50px;
+
+   // border: 2px solid white;
+    
+}
+
+#search-bar ion-input {
     float: left;
     margin: 5px 0px;
-    width: calc(100% - 10% - 150px - 20px);
+    width: 85%;
     height: 55px;
     //border: 2px solid white;
 }
 
 #search-bar ion-icon {
-    margin-right: 10px;
-}
-
-ion-select {
-    float: left;
-    text-align: center;
-   
-    margin: 0px 15px;
-    //width: 10%;
-
-    width: 120px;
-    height: 50px;
-
+    margin: 0px 20px;
     //border: 2px solid white;
-    
 }
+
+
 
 #top-container ion-button {
     float: right;
-    margin: 0px 10px;
+    margin: 0px 5px;
     width: 5%;
 
     min-width: 50px;
     height: 55px;
-    text-align: right;
+    text-align: center;
+}
+#search-bar ion-button ion-icon {
+    //margin: 0px;
+    min-width: 45px;
+    //border: 2px solid white;
+}
+
+#card-container{
+    clear: both;
 }
 
 .card-product {

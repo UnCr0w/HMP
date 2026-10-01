@@ -11,19 +11,22 @@ import { Product } from '../../services/product';
 export class TambahprodukPage implements OnInit {
   products: any[] = [];
   new_nama: string = "";
-  new_harga: number = 0;
+  new_hargaBeli: number = 0;
+  new_hargaJual: number = 0;
   new_stok: number = 0;
-  new_tipe: string = "";
+  new_kategori: string = "";
   new_url: string = "";
-  arr_tipe: string[] = []
+  arr_kategori: string[] = []
 
   public alertButtons = ['OK'];
+  isProductAdded: boolean = false;
+  isAlertOpen: boolean = false;
   pesan: string = "";
 
   constructor(private router: Router, private productService: Product) { }
 
   ngOnInit() {
-    this.arr_tipe = this.productService.arr_tipe;
+    this.arr_kategori = this.productService.arr_kategori;
   }
 
   badge(type: string): string {
@@ -32,25 +35,46 @@ export class TambahprodukPage implements OnInit {
 
   addProduk() {
     if (this.new_nama == "") {
-      this.pesan = "Nama tidak boleh kosong."
-    } else if (this.new_harga <= 0) {
-      this.pesan = "Harga tidak boleh 0 atau negatif."
+      this.pesan = "Nama tidak boleh kosong.";
+    } else if (this.new_hargaBeli < 0) {
+      this.pesan = "Harga Beli tidak boleh negatif.";
+    } else if (this.new_hargaJual < 0) {
+      this.pesan = "Harga Jual tidak boleh negatif.";
     } else if (this.new_stok < 0) {
-      this.pesan = "Stok tidak boleh negatif."
-    } else if (this.new_tipe == "") {
-      this.pesan = "Tipe tidak boleh kosong."
-    } else if (this.new_url == "") {
-      this.pesan = "Link foto tidak boleh kosong."
+      this.pesan = "Stok tidak boleh negatif.";
+    } else if (this.new_kategori == "") {
+      this.pesan = "kategori tidak boleh kosong.";
     } else {
-      this.productService.addProduct(this.new_nama, this.new_harga, this.new_stok, this.new_tipe, this.new_url)
       this.pesan = "Produk berhasil ditambahkan."
+
+      this.productService.addProduct(
+        this.new_nama,
+        this.new_hargaBeli,
+        this.new_hargaJual,
+        this.new_stok,
+        this.new_kategori,
+        this.new_url);
+
+
       this.new_nama = "";
-      this.new_harga = 0;
-      this.new_stok = 0; 
-      this.new_tipe = ""; 
+      this.new_hargaBeli = 0;
+      this.new_hargaJual = 0;
+      this.new_stok = 0;
+      this.new_kategori = "";
       this.new_url = "";
       
-      //this.router.navigate(['/produk']);
+      this.isAlertOpen = true;
+      this.isProductAdded = true;
+    }
+
+    this.isAlertOpen = true;
+  }
+
+  closeAlert(){
+    this.isAlertOpen = false;
+    if(this.isProductAdded){
+      this.isProductAdded = false;
+      this.router.navigate(['/produk']);
     }
   }
 

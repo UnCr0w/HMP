@@ -14,11 +14,12 @@ export class DetailprodukPage implements OnInit {
   products: any[] = [];
 
   new_nama: string = "";
-  new_harga: number = 0;
+  new_hargaBeli: number = 0;
+  new_hargaJual: number = 0;
   new_stok: number = 0;
-  new_tipe: string = "";
+  new_kategori: string = "";
   new_url: string = "";
-  arr_tipe: string[] = []
+  arr_kategori: string[] = []
 
   public alertButtons = ['OK']
   pesan: string = "";
@@ -26,8 +27,8 @@ export class DetailprodukPage implements OnInit {
   constructor(private route: ActivatedRoute, private productService: Product) { }
 
   ngOnInit() {
-    this.products = this.productService.temp_products;
-    this.arr_tipe = this.productService.arr_tipe;
+    this.products = this.productService.products;
+    this.arr_kategori = this.productService.arr_kategori;
     this.route.params.subscribe(params => {
       this.id = params['id'];
     })
@@ -37,9 +38,10 @@ export class DetailprodukPage implements OnInit {
 
   setProperties() {
     this.new_nama = this.products[this.id].nama;
-    this.new_harga = this.products[this.id].harga;
+    this.new_hargaBeli = this.products[this.id].hargaBeli;
+    this.new_hargaJual = this.products[this.id].hargaJual;
     this.new_stok = this.products[this.id].stok;
-    this.new_tipe = this.products[this.id].tipe;
+    this.new_kategori = this.products[this.id].kategori;
     this.new_url = this.products[this.id].url;
   }
 
@@ -48,18 +50,28 @@ export class DetailprodukPage implements OnInit {
   }
 
   editProduk() {
+    console.log('hargaJual:', this.new_hargaJual);
+
     if (this.new_nama == "") {
-      this.pesan = "Nama tidak boleh kosong."
-    } else if (this.new_harga <= 0) {
-      this.pesan = "Harga tidak boleh 0 atau negatif."
+      this.pesan = "Nama tidak boleh kosong.";
+    } else if (this.new_hargaBeli < 0) {
+      this.pesan = "Harga Beli tidak boleh negatif.";
+    } else if (this.new_hargaJual < 0) {
+      this.pesan = "Harga Jual tidak boleh negatif.";
     } else if (this.new_stok < 0) {
-      this.pesan = "Stok tidak boleh negatif."
-    } else if (this.new_tipe == "") {
-      this.pesan = "Tipe tidak boleh kosong."
-    } else if (this.new_url == "") {
-      this.pesan = "Link foto tidak boleh kosong."
+      this.pesan = "Stok tidak boleh negatif.";
+    } else if (this.new_kategori == "") {
+      this.pesan = "kategori tidak boleh kosong.";
     } else {
-      this.productService.saveProduct(this.id, this.new_nama, this.new_harga, this.new_stok, this.new_tipe, this.new_url)
+      this.productService.saveProduct(
+        this.id,
+        this.new_nama,
+        this.new_hargaBeli,
+        this.new_hargaJual,
+        this.new_stok,
+        this.new_kategori,
+        this.new_url);
+
       this.pesan = "Perubahan berhasil disimpan."
     }
   }

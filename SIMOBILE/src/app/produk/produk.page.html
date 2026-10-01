@@ -4,7 +4,6 @@
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Produk</ion-title>
-
   </ion-toolbar>
 </ion-header>
 
@@ -16,32 +15,35 @@
   </ion-header>
 
   <div id="top-container">
+
     <ion-item id="search-bar">
-      <ion-icon name="search-outline"></ion-icon>
+
+      <ion-select label="" labelPlacement="stacked" placeholder="Snack" [(ngModel)]="kategori">
+        <ion-select-option *ngFor="let kategori of arr_kategori" [value]="kategori">{{kategori}}
+        </ion-select-option>
+      </ion-select>
+
       <ion-input labelPlacement="end" placeholder="Cari Produk" [(ngModel)]="keyword">
       </ion-input>
-    </ion-item>
+      <ion-icon name="search-outline"></ion-icon>
 
-    <ion-select labelPlacement="stacked" placeholder="Snack" [(ngModel)]="tipe">
-      <ion-select-option *ngFor="let tipe of arr_tipe" [value]="tipe">{{tipe}}
-      </ion-select-option>
-    </ion-select>
-    
-    <ion-button slot="end" id="btnTambahProduk" routerLink="tambahproduk">
-      <!-- Tambah -->
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-button>
+      <ion-button slot="end" id="btnTambahProduk" routerLink="tambahproduk">
+        <!-- Tambah -->
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
 
 
   </div>
 
   <div id="card-container">
-    <ion-card *ngFor="for let product of filter(); let i = index" class="card-product" routerLink="detailproduk/{{i}}">
+    <ion-card *ngFor="for let product of filter(); let i = index" class="card-product"
+      routerLink="detailproduk/{{product.id - 1}}">
       <ion-card-header>
         <ion-item>
           {{product.nama}}
-          <ion-chip color="{{badge(product.tipe)}}">
-            {{product.tipe}}
+          <ion-chip color="{{badge(product.kategori)}}">
+            {{product.kategori}}
           </ion-chip>
         </ion-item>
       </ion-card-header>
@@ -49,10 +51,13 @@
       <ion-img [src]="product.url == '' ? 'https://placehold.net/default.png' : product.url"></ion-img>
 
       <ion-item>
-        <span>Price: </span>Rp{{product.harga}}
+        <span>Harga Beli</span>: Rp{{product.hargaBeli}}
       </ion-item>
       <ion-item>
-        <span>Stock: </span>{{product.stok}}
+        <span>Harga Jual</span>: Rp{{product.hargaJual}}
+      </ion-item>
+      <ion-item>
+        <span>Stok</span>: {{product.stok}}
       </ion-item>
 
     </ion-card>
@@ -73,8 +78,8 @@
           <ion-list routerLink="detailproduk/{{i*3 + i2}}">
             <ion-header [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 20}">
               {{product.nama}}
-              <ion-chip color="{{setBadge(product.tipe)}}">
-                {{product.tipe}}
+              <ion-chip color="{{setBadge(product.kategori)}}">
+                {{product.kategori}}
               </ion-chip>
             </ion-header>
             <ion-img [src]="product.url" [ngStyle]="{'margin.px' : 20, 'width.px':450, 'height.px':450}"></ion-img>
