@@ -5,6 +5,7 @@
     </ion-buttons>
     <ion-title>
       TOKO MAKMUR JAYA
+      <ion-toggle [enableOnOffLabels]="true" [(ngModel)]="isChecked" (ionChange)="toggleDarkMode()" [checked]="isChecked">Toggle Mode</ion-toggle>
     </ion-title>
   </ion-toolbar>
 </ion-header>
