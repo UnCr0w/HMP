@@ -15,33 +15,30 @@ export class ProdukPage implements OnInit {
   arr_kategori: string[] = []
   keyword: string = "";
   kategori: string = "Semua";
-  qty: number[]=[];
+  qty: number[] = [];
   public temp_product: any[] = [];
-  
+
   constructor(private productService: Product, private animationCtrl: AnimationController, public cartService: Cart) { }
 
   ngOnInit() {
-    this.products = this.productService.products;  
-    this.arr_kategori = ["Semua"] ;
+    this.products = this.productService.products;
+    this.arr_kategori = ["Semua"];
     this.arr_kategori = this.arr_kategori.concat(this.productService.arr_kategori);
+    this.establishQty();
   }
 
   ionViewDidEnter() {
     this.easeUp()
   }
 
-  getQty(id:number):number{
-    return this.qty[id] || 1;
-  }
-
-  badge(type: string):string{
+  badge(type: string): string {
     return this.productService.setBadge(type);
   }
 
-  
-  filter(): any[]{
+  filter(): any[] {
     return this.productService.filterProduct(this.keyword, this.kategori);
   }
+
   easeUp() {
     const contentEleement = document.querySelector('#content') as HTMLElement;
     const animation = this.animationCtrl
@@ -51,28 +48,59 @@ export class ProdukPage implements OnInit {
       .iterations(1) // do animation 3 times
       .keyframes([
         { offset: 0, transform: 'translate(0, 10px)' },
-        { offset: 1,},
+        { offset: 1, },
       ]);
     animation.play();
 
   }
 
-  checkQty(){
-    for (let i =0; i<this.products.length;i++){
-      if(!this.qty[this.products[i].id]){
-        this.qty[this.products[i].id] =1;
+  checkQty() {
+    for (let i = 0; i < this.products.length; i++) {
+      if (!this.qty[this.products[i].id]) {
+        this.qty[this.products[i].id] = 1;
       }
     }
   }
 
-  valid(product: any){
-    let beli = Number(this.qty[product.id]);
-    return product.stok>0&&beli>=1&&beli<=product.stok
+  establishQty() {
+    for (let i = 0; i < this.products.length; i++) {
+      this.qty[this.products[i].id] = 0;
+    }
   }
 
-  addToCart(product:any){
-    this.cartService.addToCart(product, Number(this.qty[product.id]))
-    this.qty[product.id]=1
+  getQty(product: any): number {
+    return this.qty[product.id];
   }
-  
+
+  valid(product: any) {
+    let beli = Number(this.qty[product.id]);
+    return product.stok > 0 && beli >= 1 && beli <= product.stok
+  }
+
+  addToCart(product: any) {
+    if (this.qty[product.id] == 0) {
+      this.qty[product.id] = 1
+    }
+    this.cartService.addToCart(product, Number(this.qty[product.id]))
+  }
+
+  addQty(product: any) {
+    if (this.qty[product.id] + 1 <= product.stok) {
+      this.qty[product.id]++;
+      this.cartService.addToCart(product, Number(this.qty[product.id]))
+    }
+  }
+
+  removeQty(product: any) {
+    if (this.qty[product.id] - 1 >= 0) {
+      this.qty[product.id]--;
+      this.cartService.addToCart(product, Number(this.qty[product.id]))
+    }
+  }
+
+  removeProduct(product: any) {
+    this.qty[product.id] = 0;
+  }
+
+
 }
