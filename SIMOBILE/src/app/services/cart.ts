@@ -10,11 +10,7 @@ export class Cart {
     //pengecekan produk sudah ada di cart blm
     for (let i = 0; i < this.buyItems.length; i++) {
       if (this.buyItems[i].id == product.id) {
-        let total = this.buyItems[i].qty + qty;
-        if (total > product.stok) {
-          total = product.stok;
-        }
-        this.buyItems[i].qty = total;
+        this.buyItems[i].qty = qty;
         return;
       }
     }
