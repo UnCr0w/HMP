@@ -15,23 +15,57 @@ ion-card-title {
     width: 50%;
 }
 
-#left {
+
+ion-card {
+    margin: 20px 2.5%; 
+    width: 45%;
     float: left;
-    width: 70%;
+    //border: 2px solid white;
 }
 
-#right {
+.item-card {
+    width: 100%;
+    margin: auto; 
+    //margin: 15px;
+    //margin-bottom: 20px;
+    //height: 315px;
     float: left;
-    margin: 10px;
-
+    //clear: both;
+    //border: 2px solid white;
 }
 
-#right ion-img {
-    width: 400px;
-    height: 400px;
-    margin: 10px 25px;
+.left {
+    float: left;
+    width: 55%;
+    margin: 5px;
+    padding: 10px;
+    //border: 2px solid white;
+}
+
+.left ion-item {
+    //margin: 30px 15px;
+    //padding: 15px; 
+    //border: 2px solid white;
+}
+
+.left ion-item span {
+    width: 60%;
+}
+
+.right {
+    float: right;
+    margin: 5px;
+    //border: 2px solid white;
+}
+
+.right ion-img {
+    width: 300px;
+    height: 300px;
+    //margin: 10px 25px;
     object-fit: cover;
 }
+
+
 
 #btnSimpan {
     clear: both;

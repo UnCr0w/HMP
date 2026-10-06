@@ -14,54 +14,51 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-list>
-        <div id="info">
-          <div>
-            <ion-item>
-              <span>Id</span>:&nbsp;
-              <ion-label>{{riwayat[id].id}}</ion-label>
-            </ion-item>
-            <ion-item>
-              <span>Tanggal </span>:&nbsp;
-              <ion-label>{{dateFormatInd(riwayat[id].tanggal)}}</ion-label>
-            </ion-item>
-            <ion-item>
-              <span>Total Harga</span>:&nbsp;
-              <ion-label>{{riwayat[id].totalHarga}}</ion-label>
-            </ion-item>
-            <ion-item>
-              <span>Items</span>
-            </ion-item>
-          </div>
 
-          <div *ngFor="let item of riwayat[id].items" class="left">
-            <div class="left">
-              <ion-item>
-                <span>Nama</span>:&nbsp;
-                <ion-label>{{item.nama}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <span>Jumlah</span>:&nbsp;
-                <ion-label>{{item.qty}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <span>Harga Jual</span>:&nbsp;
-                <ion-label>{{item.hargaJual}}</ion-label>
-              </ion-item>
-            </div>
-            <div class="right">
-              <ion-img [src]="item.url == '' ? 'https://placehold.net/default.png' : item.url"></ion-img>
-            </div>
+  <ion-list>
+    <div id="info">
+      <div>
+        <ion-item>
+          <span>Id</span>:&nbsp;
+          <ion-label>{{riwayat[id].id}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <span>Tanggal </span>:&nbsp;
+          <ion-label>{{dateFormatInd(riwayat[id].tanggal)}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <span>Total Harga</span>:&nbsp;
+          <ion-label>{{riwayat[id].totalHarga}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <span>Items</span>
+        </ion-item>
+      </div>
+
+      <ion-card *ngFor="let item of riwayat[id].items">
+        <ion-card class="item-card">
+          <div class="left">
+            <ion-item>
+              <span>Nama</span>:&nbsp;
+              <ion-label>{{item.nama}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <span>Jumlah</span>:&nbsp;
+              <ion-label>{{item.qty}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <span>Harga Jual</span>:&nbsp;
+              <ion-label>{{item.hargaJual}}</ion-label>
+            </ion-item>
           </div>
           <div class="right">
-
+            <ion-img [src]="item.url == '' ? 'https://placehold.net/default.png' : item.url"></ion-img>
           </div>
-        </div>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+        </ion-card>
+      </ion-card>
+     
+    </div>
+  </ion-list>
 
   <!-- <ion-card>
     <ion-card-header>
