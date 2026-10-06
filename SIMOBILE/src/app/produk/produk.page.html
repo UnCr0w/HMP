@@ -4,10 +4,10 @@
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Produk</ion-title>
-
     <ion-buttons slot="end">
-      <ion-button routerLink="/tambahproduk">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
+      <ion-button routerLink="keranjang">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="danger">{{cartService.getTotalItem()}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,30 +20,119 @@
     </ion-toolbar>
   </ion-header>
 
+  <div id="top-container">
+
+    <ion-item id="search-bar">
+
+      <ion-select label="" labelPlacement="stacked" placeholder="Snack" [(ngModel)]="kategori">
+        <ion-select-option *ngFor="let kategori of arr_kategori" [value]="kategori">{{kategori}}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-input labelPlacement="end" placeholder="Cari Produk" [(ngModel)]="keyword">
+      </ion-input>
+      <ion-icon name="search-outline"></ion-icon>
+
+      <ion-button slot="end" id="btnTambahProduk" routerLink="tambahproduk">
+        <!-- Tambah -->
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>
+
+  <div id="card-container">
+    <ion-card *ngFor="for let product of filter(); let i = index" class="card-product">
+      <ion-card-header routerLink="detailproduk/{{product.id}}">
+        <ion-item>
+          {{product.nama}}
+          <ion-chip color="{{badge(product.kategori)}}">
+            {{product.kategori}}
+          </ion-chip>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-img routerLink="detailproduk/{{product.id}}"
+        [src]="product.url == '' ? 'https://placehold.net/default.png' : product.url"></ion-img>
+
+      <ion-item>
+        <span>Harga Beli: </span>Rp{{product.hargaBeli}}
+      </ion-item>
+      <ion-item>
+        <span>Harga Jual: </span>Rp{{product.hargaJual}}
+      </ion-item>
+      <ion-item>
+        <span>Stok: </span>{{product.stok}}
+      </ion-item>
+      <div>
+        <ion-item *ngIf="getQty(product) == 0" id="add-to-cart">
+          <ion-button (click)="addToCart(product)" [disabled]="product.stok == 0">Add to Cart</ion-button>
+        </ion-item>
+        <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0 ">
+          <ion-button (click)="removeQty(product)"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+          <ion-input class="input-qty" type="number" [max]="product.stok" placeholder="Jumlah Qty"
+            [(ngModel)]="qty[product.id]" (keyup)="addToCart(product)"></ion-input>
+          <ion-button (click)="addQty(product)"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
+          
+          <ion-note color="danger" *ngIf="qty[product.id] > product.stok" [ngStyle]="{'margin-top': '18px', 
+          'margin-left': '10px','display': 'inline-block'}">
+            Melebihi stok (maks {{product.stok}})
+          </ion-note>
+          <ion-note color="danger" *ngIf="qty[product.id] < 1" [ngStyle]="{'margin-top': '18px', 
+          'margin-left': '10px','display': 'inline-block'}">
+            Jumlah minimal 1
+          </ion-note>
+        </ion-item>
+
+      </div>
+
+
+      <!-- <ion-item>
+        <ion-input class="input-qty" type="number" min="1" [max]="product.stok" placeholder="Jumlah Qty"
+          [(ngModel)]="qty[product.id]"></ion-input>
+        <ion-button (click)="addToCart(product)" [disabled]="product.stok == 0">Add to Cart</ion-button>
+        <ion-note color="danger" *ngIf="qty[product.id] > product.stok" [ngStyle]="{'margin-top': '18px', 
+          'margin-left': '10px','display': 'inline-block'}">
+          Melebihi stok (maks {{product.stok}})
+        </ion-note>
+        <ion-note color="danger" *ngIf="qty[product.id] < 1" [ngStyle]="{'margin-top': '18px', 
+          'margin-left': '10px','display': 'inline-block'}">
+          Jumlah minimal 1
+        </ion-note>
+      </ion-item> -->
+    </ion-card>
+  </div>
+
+  <!-- 
   <ion-grid>
-    <ion-row *ngFor="let product2 of chunkArray(products, 3); let i = index">
-      <ion-col *ngFor="let product of product2; let i2 = index">
-        <ion-list routerLink="detailproduk/{{i*3 + i2}}">
-          <ion-header [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 20}">
-            {{product.nama}}
-            <ion-chip color="{{setBadge(product.tipe)}}">
-              {{product.tipe}}
-            </ion-chip>
-          </ion-header>
-          <ion-img [src]="product.url" [ngStyle]="{ 'margin.px' : 20}"></ion-img>
-          <ion-item>
-            Harga Beli: Rp{{product.hargaBeli}}
-          </ion-item>
-          <ion-item>
-            Harga Jual: Rp{{product.hargaJual}}
-          </ion-item>
-          <ion-item>
-            Stock: {{product.stok}}
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-item>
+      <ion-icon name="search-outline"></ion-icon>
+      <ion-input labelPlacement="end" placeholder="Cari Produk" [(ngModel)]="keyword">
+      </ion-input>
+    </ion-item>
+
+
+    <div id="content">
+      <ion-row *ngFor="let product2 of chunkArray(products, 3); let i = index">
+        <ion-col *ngFor="let product of product2; let i2 = index" size="4-6-12">
+          <ion-list routerLink="detailproduk/{{i*3 + i2}}">
+            <ion-header [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 20}">
+              {{product.nama}}
+              <ion-chip color="{{setBadge(product.kategori)}}">
+                {{product.kategori}}
+              </ion-chip>
+            </ion-header>
+            <ion-img [src]="product.url" [ngStyle]="{'margin.px' : 20, 'width.px':450, 'height.px':450}"></ion-img>
+            <ion-item>
+              Price: Rp{{product.harga}}
+            </ion-item>
+            <ion-item>
+              Stock: {{product.stok}}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid> -->
 
 
 

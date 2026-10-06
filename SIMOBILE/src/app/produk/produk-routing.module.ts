@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'tambahproduk',
     loadChildren: () => import('./tambahproduk/tambahproduk.module').then( m => m.TambahprodukPageModule)
+  },  {
+    path: 'keranjang',
+    loadChildren: () => import('./keranjang/keranjang.module').then( m => m.KeranjangPageModule)
   }
+
 
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../../services/cart';
+
 import { Transaction } from '../../services/transaction'; 
 import { Product } from '../../services/product';        
 
@@ -15,7 +16,6 @@ export class KeranjangPage implements OnInit {
     private productService: Product) { }
 
   ngOnInit() {
-    
   }
   
   checkout() {
@@ -36,7 +36,6 @@ export class KeranjangPage implements OnInit {
 
     this.cartService.clearCart();
   }
-
   hapus(id:number){
     this.cartService.deleteItem(id);
   }

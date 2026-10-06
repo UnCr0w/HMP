@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductService } from '../services/product';
+import { Product } from '../services/product';
+import { AnimationController } from '@ionic/angular';
+import { Cart } from '../services/cart';
 
 @Component({
   selector: 'app-produk',
@@ -10,33 +12,94 @@ import { Product, ProductService } from '../services/product';
 export class ProdukPage implements OnInit {
 
   products: any[] = [];
-  constructor(private productService: ProductService) { }
+  arr_kategori: string[] = []
+  keyword: string = "";
+  kategori: string = "Semua";
+  qty: number[] = [];
+  public temp_product: any[] = [];
+
+  constructor(private productService: Product, private animationCtrl: AnimationController, public cartService: Cart) { }
 
   ngOnInit() {
     this.products = this.productService.products;
+    this.arr_kategori = ["Semua"];
+    this.arr_kategori = this.arr_kategori.concat(this.productService.arr_kategori);
+    this.establishQty();
   }
 
-  chunkArray(arr: any[], chunkSize: number): any[][] {
-    const result = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      result.push(arr.slice(i, i + chunkSize));
-    }
-    return result;
+  ionViewDidEnter() {
+    this.easeUp()
   }
 
-  setBadge(type: string): string {
-    if (type == "Snack") {
-      return "warning";
-    } else if (type == "Makanan") {
-      return "danger";
-    } else if (type == "Bahan Pokok") {
-      return "tertiary";
-    } else if (type == "Kebutuhan Rumah") {
-      return "success"
-    } else if (type = "Minuman") {
-      return "primary";
+  badge(type: string): string {
+    return this.productService.setBadge(type);
+  }
+
+  filter(): any[] {
+    return this.productService.filterProduct(this.keyword, this.kategori);
+  }
+
+  easeUp() {
+    const contentEleement = document.querySelector('#content') as HTMLElement;
+    const animation = this.animationCtrl
+      .create()
+      .addElement(contentEleement)
+      .duration(800) // Animation duration in milliseconds
+      .iterations(1) // do animation 3 times
+      .keyframes([
+        { offset: 0, transform: 'translate(0, 10px)' },
+        { offset: 1, },
+      ]);
+    animation.play();
+
+  }
+
+  checkQty() {
+    for (let i = 0; i < this.products.length; i++) {
+      if (!this.qty[this.products[i].id]) {
+        this.qty[this.products[i].id] = 1;
+      }
     }
-    return "";
+  }
+
+  establishQty() {
+    for (let i = 0; i < this.products.length; i++) {
+      this.qty[this.products[i].id] = 0;
+    }
+  }
+
+  getQty(product: any): number {
+    return this.qty[product.id];
+  }
+
+  valid(product: any) {
+    let beli = Number(this.qty[product.id]);
+    return product.stok > 0 && beli >= 1 && beli <= product.stok
+  }
+
+  addToCart(product: any) {
+    if (this.qty[product.id] == 0) {
+      this.qty[product.id] = 1
+    }
+    this.cartService.addToCart(product, Number(this.qty[product.id]))
+  }
+
+  addQty(product: any) {
+    if (this.qty[product.id] + 1 <= product.stok) {
+      this.qty[product.id]++;
+      this.cartService.addToCart(product, Number(this.qty[product.id]))
+    }
+  }
+
+  removeQty(product: any) {
+    if (this.qty[product.id] - 1 >= 0) {
+      this.qty[product.id]--;
+      this.cartService.addToCart(product, Number(this.qty[product.id]))
+    }
+  }
+
+  removeProduct(product: any) {
+    this.qty[product.id] = 0;
   }
 
 

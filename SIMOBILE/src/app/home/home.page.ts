@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TransactionService } from '../services/transaction';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +8,6 @@ import { TransactionService } from '../services/transaction';
 })
 export class HomePage {
 
+  constructor() {}
 
 }
