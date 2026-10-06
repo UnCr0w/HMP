@@ -42,7 +42,7 @@
 
   <div id="card-container">
     <ion-card *ngFor="for let product of filter(); let i = index" class="card-product">
-      <ion-card-header routerLink="detailproduk/{{product.id}}">
+      <ion-card-header routerLink="{{routerDetail(product)}}">
         <ion-item>
           {{product.nama}}
           <ion-chip color="{{badge(product.kategori)}}">
@@ -51,7 +51,7 @@
         </ion-item>
       </ion-card-header>
 
-      <ion-img routerLink="detailproduk/{{product.id}}"
+      <ion-img routerLink="routerDetail(product)"
         [src]="product.url == '' ? 'https://placehold.net/default.png' : product.url"></ion-img>
 
       <ion-item>
@@ -64,7 +64,7 @@
         <span>Stok: </span>{{product.stok}}
       </ion-item>
       <div>
-        <ion-item *ngIf="getQty(product) == 0" id="add-to-cart">
+        <ion-item *ngIf="this.qty[product.id] == 0" id="add-to-cart">
           <ion-button (click)="addToCart(product)" [disabled]="product.stok == 0">Add to Cart</ion-button>
         </ion-item>
         <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0 ">

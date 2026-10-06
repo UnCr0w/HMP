@@ -10,6 +10,10 @@ export class Cart {
     //pengecekan produk sudah ada di cart blm
     for (let i = 0; i < this.buyItems.length; i++) {
       if (this.buyItems[i].id == product.id) {
+        if(qty == 0){
+          this.deleteItem(product.id);
+          return;
+        }
         this.buyItems[i].qty = qty;
         return;
       }
@@ -33,6 +37,15 @@ export class Cart {
         return;
       }
     }
+  }
+
+  updateQtyOnPage(id:number):number {
+    for (let i = 0; i < this.buyItems.length; i++) {
+      if (this.buyItems[i].id == id) {
+        return this.buyItems[i].qty;
+      }
+    }
+    return 0;
   }
 
   getTotalItem(): number {

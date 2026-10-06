@@ -27,8 +27,10 @@ export class ProdukPage implements OnInit {
     this.establishQty();
   }
 
+
   ionViewDidEnter() {
-    this.easeUp()
+    this.updateQty();
+    this.easeUp();
   }
 
   badge(type: string): string {
@@ -54,6 +56,13 @@ export class ProdukPage implements OnInit {
 
   }
 
+  routerDetail(product: any):string{
+    if(this.cartService.getTotalItem() == 0){
+      return "detailproduk/" + (product.id - 1);
+    }
+    return "/produk";
+  }
+
   checkQty() {
     for (let i = 0; i < this.products.length; i++) {
       if (!this.qty[this.products[i].id]) {
@@ -68,9 +77,6 @@ export class ProdukPage implements OnInit {
     }
   }
 
-  getQty(product: any): number {
-    return this.qty[product.id];
-  }
 
   valid(product: any) {
     let beli = Number(this.qty[product.id]);
@@ -98,9 +104,9 @@ export class ProdukPage implements OnInit {
     }
   }
 
-  removeProduct(product: any) {
-    this.qty[product.id] = 0;
+  updateQty() {
+    for (let i = 0; i < this.products.length; i++) {
+      this.qty[this.products[i]] = this.cartService.updateQtyOnPage(this.products[i].id);
+    }
   }
-
-
 }
