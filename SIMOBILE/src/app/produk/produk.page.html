@@ -70,7 +70,7 @@
         <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0 ">
           <ion-button (click)="removeQty(product)"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
           <ion-input class="input-qty" type="number" [max]="product.stok" placeholder="Jumlah Qty"
-            [(ngModel)]="qty[product.id]"></ion-input>
+            [(ngModel)]="qty[product.id]" (keyup)="addToCart(product)"></ion-input>
           <ion-button (click)="addQty(product)"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
           
           <ion-note color="danger" *ngIf="qty[product.id] > product.stok" [ngStyle]="{'margin-top': '18px', 

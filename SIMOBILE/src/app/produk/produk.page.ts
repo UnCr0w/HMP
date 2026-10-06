@@ -78,7 +78,7 @@ export class ProdukPage implements OnInit {
   }
 
   addToCart(product: any) {
-    if (this.qty[product.id] == null || this.qty[product.id] == 0) {
+    if (this.qty[product.id] == 0) {
       this.qty[product.id] = 1
     }
     this.cartService.addToCart(product, Number(this.qty[product.id]))
