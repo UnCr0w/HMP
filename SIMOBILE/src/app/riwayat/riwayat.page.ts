@@ -9,9 +9,10 @@ import { Transaction } from '../services/transaction';
 })
 export class RiwayatPage implements OnInit {
 
-  riwayat: any[] = []
+  riwayat: any[] = [];
   allDates: any[] = [];
   currentDate = new Date();
+  
   lstDay: string[] = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
   lstMonth: string[] = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember"];

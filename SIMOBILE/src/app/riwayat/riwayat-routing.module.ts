@@ -7,8 +7,9 @@ const routes: Routes = [
   {
     path: '',
     component: RiwayatPage
-  },  {
-    path: 'detailriwayat',
+  },
+  {
+    path: 'detailriwayat/:id',
     loadChildren: () => import('./detailriwayat/detailriwayat.module').then( m => m.DetailriwayatPageModule)
   }
 
