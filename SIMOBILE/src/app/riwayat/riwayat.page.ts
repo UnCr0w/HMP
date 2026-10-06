@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Transaction } from '../services/transaction';
 
 @Component({
   selector: 'app-riwayat',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RiwayatPage implements OnInit {
 
-  constructor() { }
+  constructor(public transactionService: Transaction) { }
 
   ngOnInit() {
   }
