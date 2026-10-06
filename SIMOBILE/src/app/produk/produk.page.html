@@ -7,7 +7,7 @@
     <ion-buttons slot="end">
       <ion-button routerLink="keranjang">
         <ion-icon name="cart-outline"></ion-icon>
-        <ion-badge color="danger">{{cartService.getTotalItem()}}</ion-badge>
+        <ion-badge color="danger">{{totalItem()}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -21,9 +21,7 @@
   </ion-header>
 
   <div id="top-container">
-
     <ion-item id="search-bar">
-
       <ion-select label="" labelPlacement="stacked" placeholder="Snack" [(ngModel)]="kategori">
         <ion-select-option *ngFor="let kategori of arr_kategori" [value]="kategori">{{kategori}}
         </ion-select-option>
@@ -63,13 +61,14 @@
       <ion-item>
         <span>Stok: </span>{{product.stok}}
       </ion-item>
+      
       <div>
         <ion-item *ngIf="this.qty[product.id] == 0" id="add-to-cart">
           <ion-button (click)="addToCart(product)" [disabled]="product.stok == 0">Add to Cart</ion-button>
         </ion-item>
-        <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0 ">
+        <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0" id="add-qty">
           <ion-button (click)="removeQty(product)"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-          <ion-input class="input-qty" type="number" [max]="product.stok" placeholder="Jumlah Qty"
+          <ion-input type="number" [max]="product.stok" placeholder="Jumlah Qty"
             [(ngModel)]="qty[product.id]" (keyup)="addToCart(product)"></ion-input>
           <ion-button (click)="addQty(product)"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
           

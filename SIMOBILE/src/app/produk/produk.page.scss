@@ -74,13 +74,20 @@
     //border: 2px solid white;
 }
 
-#add-to-cart {
-    width: 85%;
-    margin: 0px 8%;
-    border: 2px solid white;
+#add-to-cart ion-button {
+    width: 100%;
+    height: 100%;
 }
 
-.input-qty {
-    width: 70px;
+#add-qty{
+    
+}
+#add-qty ion-button{
+    width: 25%;
+    height: 100%;
+}
+#add-qty ion-input{
+    text-align: center;
+    width: 50%;
     flex: none;
 }

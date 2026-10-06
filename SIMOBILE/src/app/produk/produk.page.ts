@@ -56,8 +56,8 @@ export class ProdukPage implements OnInit {
 
   }
 
-  routerDetail(product: any):string{
-    if(this.cartService.getTotalItem() == 0){
+  routerDetail(product: any): string {
+    if (this.cartService.getTotalItem() == 0) {
       return "detailproduk/" + (product.id - 1);
     }
     return "/produk";
@@ -76,7 +76,6 @@ export class ProdukPage implements OnInit {
       this.qty[this.products[i].id] = 0;
     }
   }
-
 
   valid(product: any) {
     let beli = Number(this.qty[product.id]);
@@ -104,9 +103,14 @@ export class ProdukPage implements OnInit {
     }
   }
 
+  totalItem():number{
+    this.updateQty();
+    return this.cartService.getTotalItem();
+  }
   updateQty() {
+    //this.qty[this.products[1]] = this.cartService.updateQtyOnPage(this.products[1].id);
     for (let i = 0; i < this.products.length; i++) {
-      this.qty[this.products[i]] = this.cartService.updateQtyOnPage(this.products[i].id);
+      this.qty[this.products[i].id] = this.cartService.updateQtyOnPage(this.products[i].id);
     }
   }
 }
