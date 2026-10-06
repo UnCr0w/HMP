@@ -18,6 +18,12 @@ export class ProdukPage implements OnInit {
   qty: number[] = [];
   public temp_product: any[] = [];
 
+  openedKeranjang: boolean = false;
+  problemQty: boolean = false;
+  pesan: string = "";
+  public alertButtons = ['OK'];
+
+
   constructor(private productService: Product, private animationCtrl: AnimationController, public cartService: Cart) { }
 
   ngOnInit() {
@@ -27,9 +33,8 @@ export class ProdukPage implements OnInit {
     this.establishQty();
   }
 
-
   ionViewDidEnter() {
-    this.updateQty();
+    //this.updateQty();
     this.easeUp();
   }
 
@@ -63,6 +68,21 @@ export class ProdukPage implements OnInit {
     return "/produk";
   }
 
+  routerKeranjang() {
+    for (let i = 1; i <= this.qty.length; i++) {
+      if (this.qty[i] > this.products[i] || this.qty[i] < 0) {
+        this.problemQty = true;
+      }
+    }
+    if (this.problemQty) {
+      this.pesan = "Terdapat jumlah produk yang tidak valid. Jumlah produk akan disesuaikan."
+      return "/produk";
+    } else {
+      this.pesan = "";
+      return "keranjang";
+    }
+  }
+
   checkQty() {
     for (let i = 0; i < this.products.length; i++) {
       if (!this.qty[this.products[i].id]) {
@@ -86,7 +106,18 @@ export class ProdukPage implements OnInit {
     if (this.qty[product.id] == 0) {
       this.qty[product.id] = 1
     }
-    this.cartService.addToCart(product, Number(this.qty[product.id]))
+    if (this.qty[product.id] > product.stok) {
+      //this.problemQty = true;
+      //this.qty[product.id] = product.stok; 
+      this.cartService.addToCart(product, Number(product.stok))
+    } else if (this.qty[product.id] < 0) {
+      //this.problemQty = true;
+      //this.qty[product.id] = 1; 
+      this.cartService.addToCart(product, Number(0))
+    } else {
+      //this.problemQty = false;
+      this.cartService.addToCart(product, Number(this.qty[product.id]))
+    }
   }
 
   addQty(product: any) {
@@ -103,8 +134,12 @@ export class ProdukPage implements OnInit {
     }
   }
 
-  totalItem():number{
-    this.updateQty();
+  totalItem(): number {
+    if (this.openedKeranjang == true) {
+      this.updateQty();
+      this.problemQty = false;
+      this.openedKeranjang = false;
+    }
     return this.cartService.getTotalItem();
   }
   updateQty() {

@@ -5,8 +5,10 @@
     </ion-buttons>
     <ion-title>Produk</ion-title>
     <ion-buttons slot="end">
-      <ion-button routerLink="keranjang">
+      <ion-button id="btnKeranajang" (click)="openedKeranjang = true" routerLink="{{routerKeranjang()}}">
         <ion-icon name="cart-outline"></ion-icon>
+        <ion-alert *ngIf="problemQty" trigger="btnKeranajang" header="Keranjang"
+          message="{{pesan}}" [buttons]="alertButtons" routerLink="keranjang"></ion-alert>
         <ion-badge color="danger">{{totalItem()}}</ion-badge>
       </ion-button>
     </ion-buttons>
@@ -61,27 +63,27 @@
       <ion-item>
         <span>Stok: </span>{{product.stok}}
       </ion-item>
-      
+
       <div>
         <ion-item *ngIf="this.qty[product.id] == 0" id="add-to-cart">
           <ion-button (click)="addToCart(product)" [disabled]="product.stok == 0">Add to Cart</ion-button>
         </ion-item>
-        <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0" id="add-qty">
-          <ion-button (click)="removeQty(product)"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-          <ion-input type="number" [max]="product.stok" placeholder="Jumlah Qty"
-            [(ngModel)]="qty[product.id]" (keyup)="addToCart(product)"></ion-input>
-          <ion-button (click)="addQty(product)"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
-          
-          <ion-note color="danger" *ngIf="qty[product.id] > product.stok" [ngStyle]="{'margin-top': '18px', 
+        <ion-item *ngIf="qty[product.id] == null || qty[product.id] > 0 || qty[product.id] < 0" id="add-qty">
+          <ion-button (click)="removeQty(product)" [disabled]="qty[product.id] <= 0"><ion-icon
+              name="chevron-back-outline"></ion-icon></ion-button>
+          <ion-input type="number" [max]="product.stok" placeholder="Jumlah Qty" [(ngModel)]="qty[product.id]"
+            (keyup)="addToCart(product)">
+            <ion-note color="danger" *ngIf="qty[product.id] > product.stok" [ngStyle]="{'margin-top': '18px', 
           'margin-left': '10px','display': 'inline-block'}">
-            Melebihi stok (maks {{product.stok}})
-          </ion-note>
-          <ion-note color="danger" *ngIf="qty[product.id] < 1" [ngStyle]="{'margin-top': '18px', 
+              Melebihi stok (maks {{product.stok}})
+            </ion-note>
+            <ion-note color="danger" *ngIf="qty[product.id] < 1" [ngStyle]="{'margin-top': '18px', 
           'margin-left': '10px','display': 'inline-block'}">
-            Jumlah minimal 1
-          </ion-note>
+              Jumlah minimal 1
+            </ion-note></ion-input>
+          <ion-button (click)="addQty(product)" [disabled]="qty[product.id] >= product.stok"><ion-icon
+              name="chevron-forward-outline"></ion-icon></ion-button>
         </ion-item>
-
       </div>
 
 

@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Service()
 export class Cart {
   buyItems: any[] = [];
 
@@ -15,6 +14,7 @@ export class Cart {
           return;
         }
         this.buyItems[i].qty = qty;
+
         return;
       }
     }
@@ -29,7 +29,6 @@ export class Cart {
       qty: qty
     });
   }
-
   deleteItem(id: number) {
     for (let i = 0; i < this.buyItems.length; i++) {
       if (this.buyItems[i].id == id) {
