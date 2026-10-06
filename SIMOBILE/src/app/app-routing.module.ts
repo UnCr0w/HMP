@@ -23,10 +23,6 @@ const routes: Routes = [
     path: 'transaksi',
     loadChildren: () => import('./transaksi/transaksi.module').then( m => m.TransaksiPageModule)
   },
-  {
-  path: 'tambahproduk', 
-  loadChildren: () => import('./produk/tambahproduk/tambahproduk.module').then( m => m.TambahprodukPageModule)
-  }
   
 ];
 

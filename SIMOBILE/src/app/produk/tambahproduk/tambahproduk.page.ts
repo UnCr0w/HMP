@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Product, ProductService } from '../../services/product';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../../services/product';
 
 @Component({
   selector: 'app-tambahproduk',
@@ -7,40 +8,61 @@ import { Product, ProductService } from '../../services/product';
   styleUrls: ['./tambahproduk.page.scss'],
   standalone: false,
 })
-export class TambahprodukPage {
-  nama: string = '';
-  hargaBeli: number = 0;
-  hargaJual: number = 0;
-  stok: number = 0;
-  tipe: string = 'Snack';
-  url: string = '';
+export class TambahprodukPage implements OnInit {
+  products: any[] = [];
+  new_nama: string = "";
+  new_hargaBeli: number = 0;
+  new_hargaJual: number = 0;
+  new_stok: number = 0;
+  new_kategori: string = "";
+  new_url: string = "";
+  arr_kategori: string[] = []
 
-  arr_tipe: string[] = ["Snack", "Makanan", "Minuman", "Bahan Pokok", "Kebutuhan Rumah"];
   public alertButtons = ['OK'];
+  pesan: string = "";
 
-  constructor(private productService: ProductService) {}
+  constructor(private router: Router, private productService: Product) { }
 
-  tambahProduk(): string {
-    if (this.nama.trim() === "") {
-      return "Nama tidak boleh kosong.";
-    } else if (this.hargaBeli <= 0 || this.hargaJual <= 0) {
-      return "Harga beli dan harga jual harus lebih besar dari 0.";
-    } else if (this.stok < 0) {
-      return "Stok tidak boleh negatif.";
-    } else if (this.tipe === "") {
-      return "Tipe tidak boleh kosong.";
-    } else if (this.url.trim() === "") {
-      return "Link foto tidak boleh kosong.";
+  ngOnInit() {
+    this.arr_kategori = this.productService.arr_kategori;
+  }
+
+  badge(type: string): string {
+    return this.productService.setBadge(type);
+  }
+
+  addProduk() {
+    if (this.new_nama == "") {
+      this.pesan = "Nama tidak boleh kosong.";
+    } else if (this.new_hargaBeli < 0) {
+      this.pesan = "Harga Beli tidak boleh negatif.";
+    } else if (this.new_hargaJual < 0) {
+      this.pesan = "Harga Jual tidak boleh negatif.";
+    } else if (this.new_stok < 0) {
+      this.pesan = "Stok tidak boleh negatif.";
+    } else if (this.new_kategori == "") {
+      this.pesan = "kategori tidak boleh kosong.";
+    } else if (this.new_url == "") {
+      this.pesan = "Link foto tidak boleh kosong.";
     } else {
       this.productService.addProduct(
-        this.nama,
-        this.hargaBeli,
-        this.hargaJual,
-        this.stok,
-        this.tipe,
-        this.url
-      );
-      return "Produk berhasil ditambahkan.";
+        this.new_nama,
+        this.new_hargaBeli,
+        this.new_hargaJual,
+        this.new_stok,
+        this.new_kategori,
+        this.new_url);
+
+      this.pesan = "Produk berhasil ditambahkan."
+      this.new_nama = "";
+      this.new_hargaBeli = 0;
+      this.new_hargaJual = 0;
+      this.new_stok = 0;
+      this.new_kategori = "";
+      this.new_url = "";
+
+      //this.router.navigate(['/produk']);
     }
   }
+
 }

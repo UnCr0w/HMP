@@ -1,9 +1,5 @@
-import { Service, inject } from '@angular/core';
-
-
-
+import { Service } from '@angular/core';
 
 @Service()
-export class TransactionService {
-  
+export class Transaction {
 }

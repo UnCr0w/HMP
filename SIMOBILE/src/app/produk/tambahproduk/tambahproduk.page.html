@@ -1,64 +1,81 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/produk"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Tambah Produk</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">tambahproduk</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Form Tambah Produk</ion-card-title>
+      <ion-card-title>
+        {{new_nama}}
+        <ion-chip  *ngIf="new_kategori != ''" color="{{badge(new_kategori)}}">
+          {{new_kategori}}
+        </ion-chip>
+      </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       <ion-list>
-        <ion-item>
-          <ion-col size="4"><ion-label>Nama:</ion-label></ion-col>
-          <ion-col size="8"><ion-input [(ngModel)]="nama"></ion-input></ion-col>
-        </ion-item>
+        <div id="info">
+          <div id="left">
+            <ion-item>
+              <span>Nama</span>:&nbsp;
+              <ion-input [(ngModel)]="new_nama" placeholder="Produk"></ion-input>
+            </ion-item>
 
-        <ion-item>
-          <ion-col size="4"><ion-label>Harga Beli:</ion-label></ion-col>
-          <ion-col size="8"><ion-input type="number" [(ngModel)]="hargaBeli"></ion-input></ion-col>
-        </ion-item>
+             <ion-item>
+              <span>Harga Beli</span>:&nbsp;
+              <ion-input type="number" [(ngModel)]="new_hargaBeli" placeholder="0"></ion-input>
+            </ion-item>
 
-        <ion-item>
-          <ion-col size="4"><ion-label>Harga Jual:</ion-label></ion-col>
-          <ion-col size="8"><ion-input type="number" [(ngModel)]="hargaJual"></ion-input></ion-col>
-        </ion-item>
+            <ion-item>
+              <span>Harga Jual</span>:&nbsp;
+              <ion-input type="number" [(ngModel)]="new_hargaJual" placeholder="0"></ion-input>
+            </ion-item>
 
-        <ion-item>
-          <ion-col size="4"><ion-label>Stok:</ion-label></ion-col>
-          <ion-col size="8"><ion-input type="number" [(ngModel)]="stok"></ion-input></ion-col>
-        </ion-item>
+            <ion-item>
+              <span>Stok</span>:&nbsp;
+              <ion-input type="number" [(ngModel)]="new_stok" placeholder="0"></ion-input>
+            </ion-item>
 
-        <ion-item>
-          <ion-col size="4"><ion-label>Tipe:</ion-label></ion-col>
-          <ion-col size="8">
-            <ion-select [(ngModel)]="tipe">
-              <ion-select-option *ngFor="let t of arr_tipe" [value]="t">{{ t }}</ion-select-option>
-            </ion-select>
-          </ion-col>
-        </ion-item>
+            <ion-item>
+              <span>kategori</span>:&nbsp;
+              <ion-select labelPlacement="stacked" placeholder="Snack" [(ngModel)]="new_kategori">
+                <ion-select-option *ngFor="let kategori of arr_kategori" [value]="kategori">{{kategori}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
 
-        <ion-item>
-          <ion-col size="4"><ion-label>URL Foto:</ion-label></ion-col>
-          <ion-col size="8"><ion-input type="url" [(ngModel)]="url"></ion-input></ion-col>
-        </ion-item>
+            <ion-item>
+              <span>URL</span>:&nbsp;
+              <ion-input type="url" labelPlacement="floating" label="URL Foto " [(ngModel)]="new_url"></ion-input>
+            </ion-item>
+          </div>
 
-        <ion-item lines="none" class="ion-margin-top">
-          <ion-button id="btnTambah">Tambah</ion-button>
-          <ion-alert 
-            trigger="btnTambah" 
-            header="Tambah Produk" 
-            [message]="tambahProduk()" 
-            [buttons]="alertButtons">
-          </ion-alert>
-        </ion-item>
+          <div id="right">
+            <ion-img [src]="new_url == '' ? 'https://placehold.net/default.png' : new_url"></ion-img>
+          </div>
+        </div>
+
+
       </ion-list>
+      <ion-item>
+        <ion-button id="btnSimpan" (click)="addProduk()">Simpan
+          <ion-alert trigger="btnSimpan" header="Tambah Produk" message="{{pesan}}"
+            [buttons]="alertButtons"></ion-alert>
+        </ion-button>
+      </ion-item>
     </ion-card-content>
   </ion-card>
+
 </ion-content>

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular/lazy';
 
-import { TransaksiPageRoutingModule } from './transaksi-routing.module';
+import { KeranjangPageRoutingModule } from './keranjang-routing.module';
 
-import { TransaksiPage } from './transaksi.page';
+import { KeranjangPage } from './keranjang.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TransaksiPageRoutingModule
+    KeranjangPageRoutingModule
   ],
-  declarations: [TransaksiPage]
+  declarations: [KeranjangPage]
 })
-export class TransaksiPageModule {}
+export class KeranjangPageModule {}
