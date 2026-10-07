@@ -3,6 +3,11 @@ import { Service } from '@angular/core';
 
 @Service()
 export class Transaction {
+
+    lstDay: string[] = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    lstMonth: string[] = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
     history = [
         {
             id: 1,
@@ -387,6 +392,41 @@ export class Transaction {
 
     getHistory() {
         return this.history;
+    }
+
+    filterRiwayat(date: any): any[] {
+        var temp_riwayat: any[] = [];
+        for (let i = 0; i < this.history.length; i++) {
+            if (this.formatInd(date) == this.dateFormatInd(this.history[i].tanggal)) {
+                temp_riwayat.unshift(this.history[i]);
+            }
+        }
+        return temp_riwayat;
+    }
+
+    todayInd(): string {
+        var currentDate = new Date()
+        const h = currentDate.getDay();
+        const d = currentDate.getDate();
+        const m = currentDate.getMonth();
+        const y = currentDate.getFullYear();
+        return this.lstDay[h] + ', ' + d + ' ' + this.lstMonth[m] + ' ' + y;
+    }
+
+    dateFormatInd(date: Date): string {
+        const h = date.getDay();
+        const d = date.getDate();
+        const m = date.getMonth();
+        const y = date.getFullYear();
+        return this.lstDay[h] + ', ' + d + ' ' + this.lstMonth[m] + ' ' + y;
+    }
+
+    formatInd(date: any) {
+        const h = date.day;
+        const d = date.date;
+        const m = date.month;
+        const y = date.year;
+        return this.lstDay[h] + ', ' + d + ' ' + this.lstMonth[m - 1] + ' ' + y;
     }
 
 }

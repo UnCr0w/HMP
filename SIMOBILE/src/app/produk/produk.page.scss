@@ -43,7 +43,7 @@
 .card-product {
     display: inline-block;
     vertical-align: top;
-
+    border-radius: 20px;
     margin: 10px;
     min-width: 32%;
     height: auto;
@@ -79,21 +79,21 @@
     height: 100%;
 }
 
-#add-qty{
-    
-}
-#add-qty ion-button{
+#add-qty {}
+
+#add-qty ion-button {
     width: 25%;
     height: 100%;
 }
-#add-qty ion-input{
+
+#add-qty ion-input {
     text-align: center;
     width: 50%;
     flex: none;
 }
 
-ion-note{
+ion-note {
     margin-top: 0px;
-    margin-left: 10px; 
+    margin-left: 10px;
     display: inline-block;
 }

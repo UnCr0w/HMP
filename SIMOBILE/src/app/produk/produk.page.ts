@@ -48,15 +48,17 @@ export class ProdukPage implements OnInit {
   }
 
   easeUp() {
-    const contentEleement = document.querySelector('#content') as HTMLElement;
+    const contentEleement = document.querySelector('#card-container') as HTMLElement;
     const animation = this.animationCtrl
       .create()
       .addElement(contentEleement)
-      .duration(800) // Animation duration in milliseconds
+      .duration(500) // Animation duration in milliseconds
       .iterations(1) // do animation 3 times
       .keyframes([
-        { offset: 0, transform: 'translate(0, 10px)' },
-        { offset: 1, },
+        { offset: 0, transform: 'translate(20px, 0px)' },
+        { offset: 0.25, transform: 'translate(0px, 0px)'},
+        { offset: 0.5, transform: 'translate(10px, 0px)' },
+        { offset: 0.75, transform: 'translate(0px, 0px)'},
       ]);
     animation.play();
 
