@@ -369,18 +369,18 @@ export class Transaction {
 
     addToDate(tgl: Date) {
         var id: number = this.dates.length - 1;
-        var lastDate = this.dates[id].day + "-" +
-            this.dates[id].date + "-" +
-            this.dates[id].month + "-" +
-            this.dates[id].year;
+        var lastDate:string = this.dates[0].day + "-" +
+            this.dates[0].date + "-" +
+            this.dates[0].month + "-" +
+            this.dates[0].year;
 
         var h = tgl.getDay();
         var d = tgl.getDate();
         var m = tgl.getMonth() + 1;
         var y = tgl.getFullYear();
-        var newDate = h + '-' + d + ' ' + m + '-' + y;
-
-        if (this.dates[id] != newDate) {
+        var newDate:string = h + '-' + d + '-' + m + '-' + y;
+        
+        if (lastDate != newDate) {
             this.dates.unshift({
                 year: y,
                 month: m,
