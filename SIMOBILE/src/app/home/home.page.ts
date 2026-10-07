@@ -8,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor() { }
 
+  isDarkMode: boolean = false
+
+  changeMode() {
+    if (this.isDarkMode)
+      document.documentElement.classList.add('ion-palette-dark')
+    else
+      document.documentElement.classList.remove('ion-palette-dark')
+  }
 }
