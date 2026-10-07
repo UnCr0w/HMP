@@ -10,7 +10,7 @@ export class ProfilePage implements OnInit {
 
   namaToko:string = "Toko Makmur Jaya";
   namaPemilik: string = "Bu Marni";
-  edit:boolean = false;
+  isEditting:boolean = false;
   constructor() { }
 
   ngOnInit() {

@@ -36,10 +36,25 @@ export class TambahprodukPage implements OnInit {
       this.pesan = "Nama tidak boleh kosong.";
     } else if (this.new_hargaBeli < 0) {
       this.pesan = "Harga Beli tidak boleh negatif.";
+      this.new_hargaBeli = 0;
     } else if (this.new_hargaJual < 0) {
       this.pesan = "Harga Jual tidak boleh negatif.";
+      this.new_hargaJual = 0;
     } else if (this.new_stok < 0) {
       this.pesan = "Stok tidak boleh negatif.";
+      this.new_stok = 0;
+    } else if (this.new_stok == null || this.new_hargaBeli == null || this.new_hargaJual == null) {
+      if (this.new_stok < 0)
+        this.new_stok = 0;
+      if (this.new_hargaBeli == null)
+        this.new_hargaBeli = 0;
+      if (this.new_hargaJual == null)
+        this.new_hargaJual = 0;
+      this.pesan = "Angka yang dimasukkan tidak valid.";
+    } else if (this.new_hargaBeli == null) {
+      this.new_hargaBeli = 0;
+    } else if (this.new_hargaJual == null) {
+      this.new_hargaJual = 0;
     } else if (this.new_kategori == "") {
       this.pesan = "kategori tidak boleh kosong.";
     } else {
@@ -59,11 +74,11 @@ export class TambahprodukPage implements OnInit {
       this.new_kategori = "";
       this.new_url = "";
 
-      
+      this.routerProduk();
     }
   }
 
-  routerProduk(){
+  routerProduk() {
     this.router.navigate(['/produk']);
   }
 

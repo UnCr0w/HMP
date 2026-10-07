@@ -22,7 +22,9 @@ export class DetailprodukPage implements OnInit {
   arr_kategori: string[] = []
 
   public alertButtons = ['OK']
-  pesan: string = "";
+  pesan: string = "Perubahan berhasil disimpan.";
+
+  isEditting: boolean = false;
 
   constructor(private route: ActivatedRoute, private productService: Product) { }
 
@@ -52,30 +54,36 @@ export class DetailprodukPage implements OnInit {
   editProduk() {
     if (this.new_nama == "") {
       this.pesan = "Nama tidak boleh kosong.";
-    } else if (this.new_hargaBeli < 0) {
-      this.pesan = "Harga Beli tidak boleh negatif.";
-    } else if (this.new_hargaJual < 0) {
-      this.pesan = "Harga Jual tidak boleh negatif.";
-    } else if (this.new_stok < 0) {
-      this.pesan = "Stok tidak boleh negatif.";
+    } else if (this.new_hargaBeli < 0 || this.new_hargaJual < 0 || this.new_stok < 0) {
+      if (this.new_hargaBeli < 0)
+        this.new_hargaBeli = this.products[this.id].hargaBeli;;
+      if (this.new_hargaJual < 0)
+        this.new_hargaJual = this.products[this.id].hargaJual;
+      if (this.new_stok < 0)
+        this.new_stok = this.products[this.id].stok;
+      this.pesan = "Angka yang dimasukkan tidak valid.";
+    } else if (this.new_stok == null || this.new_hargaBeli == null || this.new_hargaJual == null) {
+      if (this.new_stok < 0)
+        this.new_stok = 0;
+      if (this.new_hargaBeli == null)
+        this.new_hargaBeli = 0;
+      if (this.new_hargaJual == null)
+        this.new_hargaJual = 0;
+      this.pesan = "Angka yang dimasukkan tidak valid.";
     } else if (this.new_kategori == "") {
       this.pesan = "kategori tidak boleh kosong.";
     } else {
       this.productService.saveProduct(
-        this.id, 
+        this.id,
         this.new_nama,
-        this.new_hargaBeli, 
-        this.new_hargaJual, 
-        this.new_stok, 
-        this.new_kategori, 
+        this.new_hargaBeli,
+        this.new_hargaJual,
+        this.new_stok,
+        this.new_kategori,
         this.new_url);
 
       this.pesan = "Perubahan berhasil disimpan."
+      this.isEditting = false;
     }
   }
-
-  routerProduk(){
-    
-  }
-
 }

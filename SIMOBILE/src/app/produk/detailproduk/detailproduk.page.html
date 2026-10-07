@@ -26,10 +26,56 @@
       </ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content *ngIf="!isEditting">
       <ion-list>
         <div id="info">
           <div id="left">
+
+            <ion-item>
+              <span>Nama</span>: {{new_nama}}
+            </ion-item>
+
+            <ion-item>
+              <span>Harga Beli</span>: Rp.{{new_hargaBeli}}
+            </ion-item>
+
+            <ion-item>
+              <span>Harga Jual</span>: Rp.{{new_hargaJual}}
+            </ion-item>
+
+            <ion-item>
+              <span>Stok</span>: {{new_stok}}
+            </ion-item>
+
+            <ion-item>
+              <span>kategori</span>: {{new_kategori}}
+            </ion-item>
+
+            <ion-item>
+              <span>URL</span>:&nbsp;
+              <ion-label>{{new_url}}</ion-label>
+            </ion-item>
+
+          </div>
+
+          <div id="right">
+            <ion-img [src]="new_url == '' ? 'https://placehold.net/default.png' : new_url"></ion-img>
+          </div>
+        </div>
+      </ion-list>
+
+      <ion-item>
+        <ion-button (click)="isEditting = true">Edit
+        </ion-button>
+      </ion-item>
+
+    </ion-card-content>
+
+    <ion-card-content *ngIf="isEditting">
+      <ion-list>
+        <div id="info">
+          <div id="left">
+
             <ion-item>
               <span>Nama</span>:&nbsp;
               <ion-input [(ngModel)]="new_nama" placeholder="Produk"></ion-input>
@@ -37,17 +83,29 @@
 
             <ion-item>
               <span>Harga Beli</span>:&nbsp;
-              <ion-input type="number" [(ngModel)]="new_hargaBeli" placeholder="0"></ion-input>
+              <ion-input type="number" [(ngModel)]="new_hargaBeli" placeholder="0">
+                <!-- <ion-note color="danger" *ngIf="new_hargaBeli == null || new_hargaBeli < 0">
+                  Agka tidak valid
+                </ion-note> -->
+              </ion-input>
             </ion-item>
 
             <ion-item>
               <span>Harga Jual</span>:&nbsp;
-              <ion-input type="number" [(ngModel)]="new_hargaJual" placeholder="0"></ion-input>
+              <ion-input type="number" [(ngModel)]="new_hargaJual" placeholder="0">
+                <!-- <ion-note color="danger" *ngIf="new_hargaJual == null || new_hargaJual < 0">
+                  Agka tidak valid
+                </ion-note> -->
+              </ion-input>
             </ion-item>
 
             <ion-item>
               <span>Stok</span>:&nbsp;
-              <ion-input type="number" [(ngModel)]="new_stok" placeholder="0"></ion-input>
+              <ion-input type="number" [(ngModel)]="new_stok" placeholder="0">
+                <!-- <ion-note color="danger" *ngIf="new_stock == null || new_stock < 0">
+                  Agka tidak valid
+                </ion-note> -->
+              </ion-input>
             </ion-item>
 
             <ion-item>
@@ -62,19 +120,22 @@
               <span>URL</span>:&nbsp;
               <ion-input type="url" labelPlacement="floating" label="URL Foto " [(ngModel)]="new_url"></ion-input>
             </ion-item>
+
           </div>
 
           <div id="right">
             <ion-img [src]="new_url == '' ? 'https://placehold.net/default.png' : new_url"></ion-img>
           </div>
-        </div>
 
+        </div>
       </ion-list>
+
       <ion-item>
         <ion-button id="btnSimpan" (click)="editProduk()">Simpan
           <ion-alert trigger="btnSimpan" header="Edit Produk" message="{{pesan}}" [buttons]="alertButtons"></ion-alert>
         </ion-button>
       </ion-item>
+
     </ion-card-content>
 
   </ion-card>
