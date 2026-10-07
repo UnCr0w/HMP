@@ -63,7 +63,7 @@ export class DetailprodukPage implements OnInit {
         this.new_stok = this.products[this.id].stok;
       this.pesan = "Angka yang dimasukkan tidak valid.";
     } else if (this.new_stok == null || this.new_hargaBeli == null || this.new_hargaJual == null) {
-      if (this.new_stok < 0)
+      if (this.new_stok == null)
         this.new_stok = 0;
       if (this.new_hargaBeli == null)
         this.new_hargaBeli = 0;

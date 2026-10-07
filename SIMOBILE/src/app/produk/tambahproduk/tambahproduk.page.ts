@@ -44,7 +44,7 @@ export class TambahprodukPage implements OnInit {
       this.pesan = "Stok tidak boleh negatif.";
       this.new_stok = 0;
     } else if (this.new_stok == null || this.new_hargaBeli == null || this.new_hargaJual == null) {
-      if (this.new_stok < 0)
+      if (this.new_stok == null)
         this.new_stok = 0;
       if (this.new_hargaBeli == null)
         this.new_hargaBeli = 0;
