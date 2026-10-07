@@ -35,7 +35,7 @@
     <ion-label slot="end"><h1>Rp{{cartService.getTotalHarga()}}</h1></ion-label>
   </ion-item>
 
-  <ion-button id="btnTransaksi" expand="block" *ngIf="cartService.buyItems.length > 0" (click)="checkout()">
+  <ion-button id="btnTransaksi" expand="block" *ngIf="cartService.buyItems.length > 0" (click)="checkout()">  
     Konfirmasi Transaksi
     <ion-alert trigger="btnTransaksi" header="Transaksi"
           message="{{pesan}}" [buttons]="alertButtons" (click)="routerProduk()"></ion-alert>

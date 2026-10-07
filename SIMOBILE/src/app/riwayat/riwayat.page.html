@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Riwayat</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Riwayat Transaksi</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,6 +16,32 @@
 
   <!-- <ion-label>{{riwayat.length}}</ion-label> -->
   <ion-list>
+<!-- <ion-content class="ion-padding">
+  
+  <p class="ion-text-center" *ngIf="transactionService.getHistory().length === 0">
+    Belum ada transaksi hari ini.
+  </p>
+
+  <ion-card *ngFor="let receipt of transactionService.getHistory()">
+    <ion-card-header>
+      <ion-card-title>Transaksi #{{ receipt.id }}</ion-card-title>
+      <ion-card-subtitle>{{ receipt.tanggal | date:'short' }}</ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <p *ngFor="let item of receipt.items">
+        {{ item.qty }}x {{ item.nama }}
+      </p>
+      
+      <ion-item lines="none">
+        <ion-label><strong>Total:</strong></ion-label>
+        <ion-note slot="end" color="success"><strong>Rp{{ receipt.totalHarga }}</strong></ion-note>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-label>{{riwayat.length}}</ion-label>
+  <ion-list id="riwayat-list"> -->
     <div *ngFor="let date of allDates" class="card-container">
       <ion-label>{{formatInd(date)}}</ion-label>
       <ion-card *ngFor="let transaksi of filterRiwayat(date)" routerLink="detailriwayat/{{transaksi.id}}">
@@ -28,4 +57,8 @@
       </ion-card>
     </div>
   </ion-list>
+<<<<<<< HEAD
 </ion-content>
+=======
+</ion-content>
+>>>>>>> 5fc3f76621e8c5073bc4d1b56449476fab2cc482

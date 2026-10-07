@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from '../../services/cart';
 import { Transaction } from '../../services/transaction';
 import { Product } from '../../services/product';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router';      
 
 @Component({
   selector: 'app-keranjang',
@@ -29,7 +29,6 @@ export class KeranjangPage implements OnInit {
     for (let i = 0; i < itemsToBuy.length; i++) {
       let purchasedItem = itemsToBuy[i];
       let productIndex = this.productService.products.findIndex(p => p.id === purchasedItem.id);
-
       if (productIndex !== -1) {
         this.productService.products[productIndex].stok -= purchasedItem.qty;
       }
