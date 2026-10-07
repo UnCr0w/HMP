@@ -24,7 +24,11 @@
   </ion-header>
 
   <ion-accordion-group expand="inset">
-    <ion-label>Ringkasan</ion-label>
+    <ion-label>
+      Ringkasan
+    </ion-label>
+
+
     <ion-accordion>
       <ion-item slot="header" color="light">
         <ion-label>Jumlah produk</ion-label>
@@ -33,7 +37,7 @@
       <ion-list slot="content">
         <ion-item *ngFor="let product of products">
           <ion-label>{{ product.nama }}</ion-label>
-          <ion-label>Qty: {{product.stok}}</ion-label>
+          <ion-label>Stok: {{product.stok}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-accordion>
@@ -45,12 +49,10 @@
 
       <ion-list slot="content">
         <ion-item *ngFor="let transaction of todayTransaction">
-          <ion-label>
-            Order #{{transaction.id}} <br>
-          </ion-label>
           <ion-label *ngFor="let product of transaction.items">
-            {{product.nama}} <br>
-            Qty: {{product.qty}}
+            Order #{{transaction.id}} <br>
+              {{product.nama}} <br>
+              Qty: {{product.qty}}
           </ion-label>
           <ion-label>
             Total: Rp{{transaction.totalHarga}}
@@ -65,7 +67,12 @@
       </ion-item>
 
       <ion-list slot="content">
-        <ion-item *ngFor="let transaction of transactionHistory"> </ion-item>
+        <ion-item *ngFor="let product of topItems">
+          <ion-label>
+            {{product.id}} - {{product.nama}} <br>
+              Qty: {{product.qty}}
+          </ion-label>
+        </ion-item>
       </ion-list>
     </ion-accordion>
   </ion-accordion-group>
