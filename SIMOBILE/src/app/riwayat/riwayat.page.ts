@@ -17,10 +17,13 @@ export class RiwayatPage implements OnInit {
   constructor(private transactionService: Transaction, private animationCtrl: AnimationController,) { }
 
   ngOnInit() {
-    this.riwayat = this.transactionService.history;
+    this.riwayat = this.transactionService.getHistory();
     this.allDates = this.transactionService.dates;
   }
-
+  refreshData() {
+    this.riwayat = this.transactionService.getHistory();
+    this.allDates = this.transactionService.dates;
+  }
   ionViewDidEnter() {
     setTimeout(() => {
       this.easeUp();

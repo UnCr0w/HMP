@@ -14,7 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list id="riwayat-list"> 
+  <ion-list id="riwayat-list">
+    <ion-button slot="end" fill="clear" (click)="refreshData()">
+      Refresh data
+    </ion-button>
     <div *ngFor="let date of allDates" class="card-container">
       <ion-label>{{formatToInd(date)}}</ion-label>
       <ion-card *ngFor="let transaksi of filter(date)" routerLink="detailriwayat/{{transaksi.id}}">
@@ -31,5 +34,3 @@
     </div>
   </ion-list>
 </ion-content>
-
-
