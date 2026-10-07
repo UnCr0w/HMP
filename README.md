@@ -1,36 +1,36 @@
 # HMP
-HMP Project
+<b>HMP Project UTS oh well ft.Ady</b><br><br>
+Maysiah Euginia Liman	160424009	A<br>
+Michael Kevin	160424015	E<br>
+Clarissa Nadine Marchella	160424021	F<br>
+Nyoman Vismaya Thri Adyatma	160424007	A<br>
+<br>
 
 # Cara Instalasi
- 1.Membuka Command Prompt
- 2.Menjalankan command "git clone https://github.com/UnCr0w/HMP.git"
- 3.Pergi ke folder HMP dengan command "cd HMP"
- 4.Melakukan "npm install" agar mendapatkan packagesnya
+ 1. Buka Command Prompt
+ 2. Jalankan command "git clone https://github.com/UnCr0w/HMP.git"
+ 3. Pindah path ke folder HMP dengan command "cd HMP"
+ 4. Lakukan "npm install" agar mendapatkan packagesnya
 # Cara Jalankan Aplikasi
- 1.Membuka VsCode atau aplikasi editor lainnya 
- 2.Membuat terminal baru 
- 3.Mengetik "ionic serve" di terminal tersebut
+ 1. Buka VsCode atau aplikasi editor lainnya 
+ 2. Buka terminal baru 
+ 3. Ketik "ionic serve" di terminal tersebut
 # Daftar Fitur
- -Main Dashboard
-  1.Ringkasan Jumlah Produk
-  2.Ringkasan Total transaksi hari ini
-  3.Ringkasan Produk Terlaris
- -Produk Page
-  1.List Product yang dijual
-  2.Search Bar untuk mencari product
-  3.Sistem Sortir untuk menyortir barang sesuai kategori
-  4.Sistem Menambahkan Product ke toko saat menekan tombol + 
-  5.Sistem Edit Product saat menekan gambar produk atau tombol "Lihat Detail". 
-    -> Jika terdapat barang dalam keranjang (sedang transaksi) maka detail produk tersebut tidak dapat dibuka sampai transaksi selesai atau dibatalkan. 
-  6.Halaman Detail Product
-    -> Saat tombol 'Edit' ditekan, maka informasi produk dapat diubah. 
-    -> Saat tombol 'Simpan' ditekan, data yang baru (jika semua datanya valid) akan disimpan. 
-  7.Sistem Keranjang yang menyimpan barang yang ditambahkan
-  8.Sistem penghapusan product saat di keranjang
- -Riwayat Transaksi 
-  1.List Transaksi yang sudah terjadi
-    -> Jika informasi transaksi ditekan, maka akan masuk halaman detial transaksi. 
-  2.Detail Transaksi 
- -Profile 
-  1.Sebuah profile page berisi informasi penjual dan tokonya
-  2.Sistem edit profile
+### A. Main Dashboard
+1. Ringkasan jumlah produk
+2. Ringkasan total transaksi hari ini
+3. Ringkasan produk terlaris
+### B. Produk Page
+1. List product yang dijual
+2. Search bar untuk mencari product
+3. Sistem sortir untuk menyortir barang sesuai kategori
+4. Sistem menambah product baru ke toko (button +)
+5. Sistem edit product
+6. Halaman detail tiap product
+7. Sistem menyimpan barang belanjaan ke keranjang dan bisa menghapusnya
+### C.Riwayat Transaksi
+  1. List transaksi yang sudah terjadi
+  2. Detail transaksi
+### D. Profile
+  1. Sebuah profile page berisi informasi penjual dan tokonya
+  2. Sistem edit profile
