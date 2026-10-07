@@ -10,6 +10,7 @@ export class ProfilePage implements OnInit {
 
   namaToko:string = "Toko Makmur Jaya";
   namaPemilik: string = "Bu Marni";
+  alamatToko: string = "Jln Tukad Pakerisan no 12"
   isEditting:boolean = false;
   constructor() { }
 

@@ -22,8 +22,8 @@
   <ion-card class="up">
     <ion-card-content class="center-spaced" *ngIf="!isEditting">
       <ion-item><span>Nama Toko</span>: {{namaToko}}</ion-item>
-      <ion-item><span>Pemilik</span>: {{namaPemilik}}<br></ion-item>
-      <br>
+      <ion-item><span>Pemilik</span>: {{namaPemilik}}</ion-item>
+      <ion-item><span>Alamat</span>: {{alamatToko}}</ion-item>
       <ion-button (click)="isEditting = true">Edit</ion-button>
     </ion-card-content>
 
@@ -34,6 +34,12 @@
       <ion-item><span>Pemilik</span>:&nbsp;
         <ion-input [(ngModel)]="namaPemilik"></ion-input>
       </ion-item>
+<<<<<<< HEAD
+=======
+      <ion-item><span>Alamat</span>:&nbsp;
+        <ion-input [(ngModel)]="alamatToko"></ion-input>
+      </ion-item>
+>>>>>>> 8a2fefad02bc3e26f669a2d10758389d40f963b8
       <br>
       <ion-button (click)="isEditting = false">Simpan</ion-button>
     </ion-card-content>
