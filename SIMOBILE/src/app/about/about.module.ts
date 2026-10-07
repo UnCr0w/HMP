@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular/lazy';
 
-import { TransaksiPageRoutingModule } from './transaksi-routing.module';
+import { AboutPageRoutingModule } from './about-routing.module';
 
-import { TransaksiPage } from './transaksi.page';
+import { AboutPage } from './about.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TransaksiPageRoutingModule
+    AboutPageRoutingModule
   ],
-  declarations: [TransaksiPage]
+  declarations: [AboutPage]
 })
-export class TransaksiPageModule {}
+export class AboutPageModule {}

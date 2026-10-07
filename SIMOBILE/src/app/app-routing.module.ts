@@ -18,11 +18,15 @@ const routes: Routes = [
   {
     path: 'riwayat',
     loadChildren: () => import('./riwayat/riwayat.module').then( m => m.RiwayatPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'transaksi',
-    loadChildren: () => import('./transaksi/transaksi.module').then( m => m.TransaksiPageModule)
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
+
   
 ];
 
