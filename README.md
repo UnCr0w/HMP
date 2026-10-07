@@ -18,14 +18,18 @@ HMP Project
  -Produk Page
   1.List Product yang dijual
   2.Search Bar untuk mencari product
-  3.Sistem Sortir Untuk menyortir barang sesuai kategori
+  3.Sistem Sortir untuk menyortir barang sesuai kategori
   4.Sistem Menambahkan Product ke toko saat menekan tombol + 
-  5.Sistem Edit Product 
+  5.Sistem Edit Product saat menekan gambar produk atau tombol "Lihat Detail". 
+    -> Jika terdapat barang dalam keranjang (sedang transaksi) maka detail produk tersebut tidak dapat dibuka sampai transaksi selesai atau dibatalkan. 
   6.Halaman Detail Product
+    -> Saat tombol 'Edit' ditekan, maka informasi produk dapat diubah. 
+    -> Saat tombol 'Simpan' ditekan, data yang baru (jika semua datanya valid) akan disimpan. 
   7.Sistem Keranjang yang menyimpan barang yang ditambahkan
   8.Sistem penghapusan product saat di keranjang
  -Riwayat Transaksi 
   1.List Transaksi yang sudah terjadi
+    -> Jika informasi transaksi ditekan, maka akan masuk halaman detial transaksi. 
   2.Detail Transaksi 
  -Profile 
   1.Sebuah profile page berisi informasi penjual dan tokonya

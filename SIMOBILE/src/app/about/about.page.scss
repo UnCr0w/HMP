@@ -1,0 +1,34 @@
+h1 {
+    text-align: center;
+}
+
+p {
+    margin: 20px auto;
+    width: 80%;
+}
+
+ion-avatar {
+    width: 120px;
+    height: 120px;
+}
+
+#frame {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.up {
+    margin-top: -60px;
+    z-index: -1;
+    //border: 2px solid white;
+}
+
+.center-spaced {
+    width: 80%;
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+    //border: 2px solid white;
+}
