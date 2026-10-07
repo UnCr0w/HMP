@@ -12,7 +12,7 @@ export class HomePage {
   constructor(
     private product: Product,
     private transaction: Transaction,
-  ) {}
+  ) { }
 
   isDarkMode: boolean = false;
   products = this.product.products;
@@ -20,17 +20,14 @@ export class HomePage {
   todayDate = new Date();
 
 
-  // todayTransaction: any[] = []
-
-
   getTodayTransaction() {
     return this.transactionHistory.filter((transaction) => {
-        return (
-          transaction.tanggal.getFullYear() === this.todayDate.getFullYear() &&
-          transaction.tanggal.getMonth() === this.todayDate.getMonth() &&
-          transaction.tanggal.getDate() === this.todayDate.getDate()
-        );
-      });
+      return (
+        transaction.tanggal.getFullYear() === this.todayDate.getFullYear() &&
+        transaction.tanggal.getMonth() === this.todayDate.getMonth() &&
+        transaction.tanggal.getDate() === this.todayDate.getDate()
+      );
+    });
   }
 
   todayTransaction: any[] = []
@@ -48,8 +45,8 @@ export class HomePage {
   topItems: any[] = []
 
   ngOnInit() {
-    this.topItems = this.getTopProducts()
-    this.todayTransaction = this.getTodayTransaction()
+    this.topItems = this.getTopProducts();
+    this.todayTransaction = this.getTodayTransaction();
   }
 
   refreshData() {
@@ -62,17 +59,17 @@ export class HomePage {
   getTopProducts(): any[] {
     const productTotals: any[] = [];
 
-      for (let transaction of this.transactionHistory) {
-        for (let item of transaction.items) {
-          const existingIndex = productTotals.findIndex(p => p.id === item.id);
-          if (existingIndex !== -1) {
-            productTotals[existingIndex].qty += item.qty;
-          } else {
-            productTotals.push({ ... item }); //this copies item
-          }
+    for (let transaction of this.transactionHistory) {
+      for (let item of transaction.items) {
+        const existingIndex = productTotals.findIndex(p => p.id === item.id);
+        if (existingIndex !== -1) {
+          productTotals[existingIndex].qty += item.qty;
+        } else {
+          productTotals.push({ ...item }); //this copies item
         }
       }
-      productTotals.sort((a, b) => b.qty - a.qty);
-      return productTotals;
     }
+    productTotals.sort((a, b) => b.qty - a.qty);
+    return productTotals;
   }
+}

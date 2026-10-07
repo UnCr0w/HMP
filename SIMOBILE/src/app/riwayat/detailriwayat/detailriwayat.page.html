@@ -19,7 +19,7 @@
     <div id="info">
       <div>
         <ion-item>
-          <span>Id Transaksi</span>:&nbsp;
+          <span>Transaksi</span>:&nbsp;#
           <ion-label>{{riwayat[id].id}}</ion-label>
         </ion-item>
         <ion-item>
@@ -59,67 +59,4 @@
      
     </div>
   </ion-list>
-
-  <!-- <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        {{new_nama}}
-        <ion-chip color="{{badge(new_kategori)}}">
-          {{new_kategori}}
-        </ion-chip>
-      </ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-list>
-        <div id="info">
-          <div id="left">
-            <ion-item>
-              <span>Nama</span>:&nbsp;
-              <ion-input [(ngModel)]="new_nama" placeholder="Produk"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <span>Harga Beli</span>:&nbsp;
-              <ion-input type="number" [(ngModel)]="new_hargaBeli" placeholder="0"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <span>Harga Jual</span>:&nbsp;
-              <ion-input type="number" [(ngModel)]="new_hargaJual" placeholder="0"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <span>Stok</span>:&nbsp;
-              <ion-input type="number" [(ngModel)]="new_stok" placeholder="0"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <span>kategori</span>:&nbsp;
-              <ion-select labelPlacement="stacked" placeholder="Snack" [(ngModel)]="new_kategori">
-                <ion-select-option *ngFor="let kategori of arr_kategori" [value]="kategori">{{kategori}}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item>
-              <span>URL</span>:&nbsp;
-              <ion-input type="url" labelPlacement="floating" label="URL Foto " [(ngModel)]="new_url"></ion-input>
-            </ion-item>
-          </div>
-
-          <div id="right">
-            <ion-img [src]="new_url == '' ? 'https://placehold.net/default.png' : new_url"></ion-img>
-          </div>
-        </div>
-
-      </ion-list>
-      <ion-item>
-        <ion-button id="btnSimpan" (click)="editProduk()">Simpan
-          <ion-alert trigger="btnSimpan" header="Edit Produk" message="{{pesan}}" [buttons]="alertButtons"></ion-alert>
-        </ion-button>
-      </ion-item>
-    </ion-card-content>
-
-  </ion-card> -->
 </ion-content>

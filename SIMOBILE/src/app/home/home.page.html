@@ -7,10 +7,7 @@
 
     <ion-buttons slot="end" class="theme-toggle-container">
       <ion-icon name="sunny-outline" class="theme-icon"></ion-icon>
-      <ion-toggle
-        [(ngModel)]="isDarkMode"
-        (ionChange)="changeMode()"
-      ></ion-toggle>
+      <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="changeMode()"></ion-toggle>
       <ion-icon name="moon-outline" class="theme-icon"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
@@ -25,17 +22,17 @@
 
   <ion-accordion-group expand="inset">
     <ion-item lines="none">
-          <ion-label class="ion-text-wrap">
-            <strong>Ringkasan</strong>
-          </ion-label>
-          <ion-button slot="end" fill="clear" (click)="refreshData()">
-            Refresh data
-          </ion-button>
-        </ion-item>
+      <ion-label class="ion-text-wrap">
+        <strong>Ringkasan</strong>
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="refreshData()">
+        Refresh data
+      </ion-button>
+    </ion-item>
 
     <ion-accordion>
       <ion-item slot="header" color="light">
-        <ion-label>Jumlah produk</ion-label>
+        <ion-label>Jumlah Produk</ion-label>
       </ion-item>
       <ion-list slot="content">
         <ion-item *ngFor="let product of products">
@@ -47,16 +44,19 @@
 
     <ion-accordion>
       <ion-item slot="header" color="light">
-        <ion-label>Total transaksi hari ini</ion-label>
+        <ion-label>Total Transaksi Hari Ini</ion-label>
       </ion-item>
 
       <ion-list slot="content">
         <ion-item *ngFor="let transaction of todayTransaction">
-          <ion-label *ngFor="let product of transaction.items">
-            Order #{{transaction.id}} <br />
+          <span>Transaksi #{{transaction.id}}</span>
+          <span>Jumlah Produk: {{transaction.items.length}}</span>
+
+          <!-- <ion-label *ngFor="let product of transaction.items">
+            Transaksi #{{transaction.id}} <br />
             {{product.nama}} <br />
-            Qty: {{product.qty}}
-          </ion-label>
+            Stok: {{product.qty}}
+          </ion-label> -->
           <ion-label> Total: Rp{{transaction.totalHarga}} </ion-label>
         </ion-item>
       </ion-list>
@@ -64,15 +64,16 @@
 
     <ion-accordion>
       <ion-item slot="header" color="light">
-        <ion-label>Produk terlaris</ion-label>
+        <ion-label>Produk Terlaris</ion-label>
       </ion-item>
 
       <ion-list slot="content">
         <ion-item *ngFor="let product of topItems">
-          <ion-label>
-            {{product.id}} - {{product.nama}} <br />
-            Qty: {{product.qty}}
-          </ion-label>
+
+          <span>ID : {{product.id}}</span>
+          <span>{{product.nama}}</span>
+          <span>Kuantitas: {{product.qty}}</span>
+
         </ion-item>
       </ion-list>
     </ion-accordion>

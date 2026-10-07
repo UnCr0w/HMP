@@ -35,7 +35,6 @@ export class ProdukPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    //this.updateQty();
     this.easeUp();
   }
 
@@ -110,15 +109,10 @@ export class ProdukPage implements OnInit {
       this.qty[product.id] = 1
     }
     if (this.qty[product.id] > product.stok) {
-      //this.problemQty = true;
-      //this.qty[product.id] = product.stok; 
       this.cartService.addToCart(product, Number(product.stok))
     } else if (this.qty[product.id] < 0) {
-      //this.problemQty = true;
-      //this.qty[product.id] = 1; 
       this.cartService.addToCart(product, Number(0))
     } else {
-      //this.problemQty = false;
       this.cartService.addToCart(product, Number(this.qty[product.id]))
     }
   }
@@ -149,7 +143,6 @@ export class ProdukPage implements OnInit {
     return this.cartService.getTotalItem();
   }
   updateQty() {
-    //this.qty[this.products[1]] = this.cartService.updateQtyOnPage(this.products[1].id);
     for (let i = 0; i < this.products.length; i++) {
       this.qty[this.products[i].id] = this.cartService.updateQtyOnPage(this.products[i].id);
     }

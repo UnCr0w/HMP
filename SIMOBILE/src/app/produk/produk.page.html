@@ -91,57 +91,6 @@
               name="chevron-forward-outline"></ion-icon></ion-button>
         </ion-item>
       </div>
-
-
-      <!-- <ion-item>
-        <ion-input class="input-qty" type="number" min="1" [max]="product.stok" placeholder="Jumlah Qty"
-          [(ngModel)]="qty[product.id]"></ion-input>
-        <ion-button (click)="addToCart(product)" [disabled]="product.stok == 0">Add to Cart</ion-button>
-        <ion-note color="danger" *ngIf="qty[product.id] > product.stok" [ngStyle]="{'margin-top': '18px', 
-          'margin-left': '10px','display': 'inline-block'}">
-          Melebihi stok (maks {{product.stok}})
-        </ion-note>
-        <ion-note color="danger" *ngIf="qty[product.id] < 1" [ngStyle]="{'margin-top': '18px', 
-          'margin-left': '10px','display': 'inline-block'}">
-          Jumlah minimal 1
-        </ion-note>
-      </ion-item> -->
     </ion-card>
   </div>
-
-  <!-- 
-  <ion-grid>
-    <ion-item>
-      <ion-icon name="search-outline"></ion-icon>
-      <ion-input labelPlacement="end" placeholder="Cari Produk" [(ngModel)]="keyword">
-      </ion-input>
-    </ion-item>
-
-
-    <div id="content">
-      <ion-row *ngFor="let product2 of chunkArray(products, 3); let i = index">
-        <ion-col *ngFor="let product of product2; let i2 = index" size="4-6-12">
-          <ion-list routerLink="detailproduk/{{i*3 + i2}}">
-            <ion-header [ngStyle]="{ 'padding.px' : 10,'padding-left.px': 20,  'font-size.px' : 20}">
-              {{product.nama}}
-              <ion-chip color="{{setBadge(product.kategori)}}">
-                {{product.kategori}}
-              </ion-chip>
-            </ion-header>
-            <ion-img [src]="product.url" [ngStyle]="{'margin.px' : 20, 'width.px':450, 'height.px':450}"></ion-img>
-            <ion-item>
-              Price: Rp{{product.harga}}
-            </ion-item>
-            <ion-item>
-              Stock: {{product.stok}}
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </div>
-  </ion-grid> -->
-
-
-
-
 </ion-content>

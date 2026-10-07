@@ -19,7 +19,7 @@ export class TambahprodukPage implements OnInit {
   arr_kategori: string[] = []
 
   public alertButtons = ['OK'];
-  pesan: string = "";
+  pesan: string = "Produk berhasil ditambahkan.";
 
   constructor(private router: Router, private productService: Product) { }
 
