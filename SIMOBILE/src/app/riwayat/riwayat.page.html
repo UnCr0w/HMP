@@ -16,8 +16,8 @@
 
   <ion-list id="riwayat-list"> 
     <div *ngFor="let date of allDates" class="card-container">
-      <ion-label>{{formatInd(date)}}</ion-label>
-      <ion-card *ngFor="let transaksi of filterRiwayat(date)" routerLink="detailriwayat/{{transaksi.id}}">
+      <ion-label>{{formatToInd(date)}}</ion-label>
+      <ion-card *ngFor="let transaksi of filter(date)" routerLink="detailriwayat/{{transaksi.id}}">
         <ion-item><span>Id Transaksi</span>:&nbsp;
           {{transaksi.id}}
         </ion-item>
