@@ -21,14 +21,19 @@ export class HomePage {
 
 
   // todayTransaction: any[] = []
-  todayTransaction = this.transactionHistory.filter((transaction) => {
-      return (
-        transaction.tanggal.getFullYear() === this.todayDate.getFullYear() &&
-        transaction.tanggal.getMonth() === this.todayDate.getMonth() &&
-        transaction.tanggal.getDate() === this.todayDate.getDate()
-      );
-    });
 
+
+  getTodayTransaction() {
+    return this.transactionHistory.filter((transaction) => {
+        return (
+          transaction.tanggal.getFullYear() === this.todayDate.getFullYear() &&
+          transaction.tanggal.getMonth() === this.todayDate.getMonth() &&
+          transaction.tanggal.getDate() === this.todayDate.getDate()
+        );
+      });
+  }
+
+  todayTransaction: any[] = []
 
   // getTodayTransaction() : any[] {
   //   return this.transaction.filterRiwayat(this.todayDate)
@@ -44,12 +49,14 @@ export class HomePage {
 
   ngOnInit() {
     this.topItems = this.getTopProducts()
+    this.todayTransaction = this.getTodayTransaction()
   }
 
   refreshData() {
     this.transactionHistory = this.transaction.getHistory()
     this.products = this.product.products
     this.topItems = this.getTopProducts()
+    this.todayTransaction = this.getTodayTransaction()
   }
 
   getTopProducts(): any[] {
