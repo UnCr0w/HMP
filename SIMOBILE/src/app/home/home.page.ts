@@ -46,6 +46,12 @@ export class HomePage {
     this.topItems = this.getTopProducts()
   }
 
+  refreshData() {
+    this.transactionHistory = this.transaction.getHistory()
+    this.products = this.product.products
+    this.topItems = this.getTopProducts()
+  }
+
   getTopProducts(): any[] {
     const productTotals: any[] = [];
 

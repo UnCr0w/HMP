@@ -24,16 +24,19 @@
   </ion-header>
 
   <ion-accordion-group expand="inset">
-    <ion-label>
-      Ringkasan
-    </ion-label>
-
+    <ion-item lines="none">
+          <ion-label class="ion-text-wrap">
+            <strong>Ringkasan</strong>
+          </ion-label>
+          <ion-button slot="end" fill="clear" (click)="refreshData()">
+            Refresh data
+          </ion-button>
+        </ion-item>
 
     <ion-accordion>
       <ion-item slot="header" color="light">
         <ion-label>Jumlah produk</ion-label>
       </ion-item>
-
       <ion-list slot="content">
         <ion-item *ngFor="let product of products">
           <ion-label>{{ product.nama }}</ion-label>
@@ -50,13 +53,11 @@
       <ion-list slot="content">
         <ion-item *ngFor="let transaction of todayTransaction">
           <ion-label *ngFor="let product of transaction.items">
-            Order #{{transaction.id}} <br>
-              {{product.nama}} <br>
-              Qty: {{product.qty}}
+            Order #{{transaction.id}} <br />
+            {{product.nama}} <br />
+            Qty: {{product.qty}}
           </ion-label>
-          <ion-label>
-            Total: Rp{{transaction.totalHarga}}
-          </ion-label>
+          <ion-label> Total: Rp{{transaction.totalHarga}} </ion-label>
         </ion-item>
       </ion-list>
     </ion-accordion>
@@ -69,8 +70,8 @@
       <ion-list slot="content">
         <ion-item *ngFor="let product of topItems">
           <ion-label>
-            {{product.id}} - {{product.nama}} <br>
-              Qty: {{product.qty}}
+            {{product.id}} - {{product.nama}} <br />
+            Qty: {{product.qty}}
           </ion-label>
         </ion-item>
       </ion-list>
