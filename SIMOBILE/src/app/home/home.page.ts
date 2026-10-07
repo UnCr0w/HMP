@@ -9,20 +9,27 @@ import { Transaction } from '../services/transaction';
   standalone: false,
 })
 export class HomePage {
+  constructor(
+    private product: Product,
+    private transaction: Transaction,
+  ) {}
 
-  constructor(private product:Product, private transaction:Transaction) { }
+  isDarkMode: boolean = false;
+  products = this.product.products;
+  transactionHistory = this.transaction.getHistory();
+  todayDate = new Date("2026-10-04T13:25:00");
 
-  isDarkMode: boolean = false
-  products: any[] = this.product.products
-  transactionHistory: any[] = this.transaction.getHistory()
-  todayDate: string = new Date().toLocaleTimeString()
+  todayTransaction = this.transactionHistory.filter((transaction) => {
+    return (
+      transaction.tanggal.getFullYear() === this.todayDate.getFullYear() &&
+      transaction.tanggal.getMonth() === this.todayDate.getMonth() &&
+      transaction.tanggal.getDate() === this.todayDate.getDate()
+    );
+  });
 
   changeMode() {
     if (this.isDarkMode)
-      document.documentElement.classList.add('ion-palette-dark')
-    else
-      document.documentElement.classList.remove('ion-palette-dark')
+      document.documentElement.classList.add('ion-palette-dark');
+    else document.documentElement.classList.remove('ion-palette-dark');
   }
-
-
 }
