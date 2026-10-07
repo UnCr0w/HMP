@@ -1,0 +1,47 @@
+ion-avatar {
+    width: 120px;
+    height: 120px;
+}
+
+#frame {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+// .up {
+//     margin-top: -60px;
+//     z-index: -1;
+// }
+
+// .center-spaced {
+//     text-align: center;
+//     margin-top: 60px;
+// }
+
+.up {
+    margin-top: -60px;
+    z-index: -1;
+    //border: 2px solid white;
+}
+
+.center-spaced {
+    width: 400px;
+    text-align: left;
+    margin-left: 40%;
+    margin-top: 60px;
+    //border: 2px solid white;
+}
+
+.center-spaced span {
+    width: 35%;
+    order: 2px solid white;
+}
+
+.center-spaced ion-button {
+    width: 100%;
+}
+
+.center-spaced ion-input {
+    width: 60%;
+}

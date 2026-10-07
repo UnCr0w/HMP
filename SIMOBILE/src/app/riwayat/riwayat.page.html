@@ -45,7 +45,7 @@
     <div *ngFor="let date of allDates" class="card-container">
       <ion-label>{{formatInd(date)}}</ion-label>
       <ion-card *ngFor="let transaksi of filterRiwayat(date)" routerLink="detailriwayat/{{transaksi.id}}">
-        <ion-item><span>Id</span>:&nbsp;
+        <ion-item><span>Id Transaksi</span>:&nbsp;
           {{transaksi.id}}
         </ion-item>
         <ion-item><span>Jumlah Produk</span>:&nbsp;
@@ -57,8 +57,6 @@
       </ion-card>
     </div>
   </ion-list>
-<<<<<<< HEAD
 </ion-content>
-=======
-</ion-content>
->>>>>>> 5fc3f76621e8c5073bc4d1b56449476fab2cc482
+
+

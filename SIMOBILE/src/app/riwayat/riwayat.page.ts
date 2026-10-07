@@ -20,7 +20,7 @@ export class RiwayatPage implements OnInit {
   constructor(private transactionService: Transaction, private animationCtrl: AnimationController,) { }
 
   ngOnInit() {
-this.riwayat = this.transactionService.history;
+    this.riwayat = this.transactionService.history;
     this.allDates = this.transactionService.dates;
   }
 
@@ -40,12 +40,12 @@ this.riwayat = this.transactionService.history;
         .duration(600)
         .iterations(1)
         .keyframes([
-           { offset: 0, opacity: '0' },
-            { offset: 0.2, opacity: '0.2' },
-            { offset: 0.4, opacity: '0.4' },
-            { offset: 0.6, opacity: '0.6' },
-            { offset: 0.8, opacity: '0.8' },
-            { offset: 1, opacity: '1' },
+          { offset: 0, opacity: '0' },
+          { offset: 0.2, opacity: '0.2' },
+          { offset: 0.4, opacity: '0.4' },
+          { offset: 0.6, opacity: '0.6' },
+          { offset: 0.8, opacity: '0.8' },
+          { offset: 1, opacity: '1' },
         ]);
       animation.play();
     }

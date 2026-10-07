@@ -10,4 +10,33 @@
       <ion-title size="large">profile</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div id="frame">
+    <ion-avatar id="myAvatar">
+      <ion-img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9K8dExVjguM0ghGKa5IjOyZMRBAaO_AMYNMNUBqHp0w&s=10"></ion-img>
+    </ion-avatar>
+  </div>
+
+
+  <ion-card class="up">
+    <ion-card-content class="center-spaced" *ngIf="!edit">
+      <ion-item><span>Nama Toko</span>: {{namaToko}}</ion-item>
+      <ion-item><span>Pemilik</span>: {{namaPemilik}}<br></ion-item>
+      <br>
+      <ion-button (click)="edit = true">Edit</ion-button>
+    </ion-card-content>
+
+    <ion-card-content class="center-spaced" *ngIf="edit">
+      <ion-item><span>Nama Toko</span>:&nbsp;
+        <ion-input [(ngModel)]="namaToko"></ion-input>
+      </ion-item>
+      <ion-item><span>Pemilik</span>:&nbsp;
+        <ion-input [(ngModel)]="namaPemilik"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button (click)="edit = false">Simpan</ion-button>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>

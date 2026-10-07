@@ -6,7 +6,6 @@ ion-card-title {
 #info {}
 
 
-
 #info ion-item {
     margin: 30px 10px;
 }
@@ -17,8 +16,8 @@ ion-card-title {
 
 
 ion-card {
-    margin: 20px 2.5%; 
-    width: 45%;
+    margin: 20px; 
+    width: 47.5%;
     float: left;
     border: 1px solid black;
     border-radius: 5px;
@@ -38,7 +37,7 @@ ion-card {
 
 .left {
     float: left;
-    width: 55%;
+    width: 58%;
     margin: 5px;
     padding: 10px;
     //border: 2px solid white;
@@ -55,8 +54,8 @@ ion-card {
 }
 
 .right {
-    float: right;
-    margin: 5px;
+    float: left;
+    margin: 10px 5px;
     //border: 2px solid white;
 }
 
