@@ -24,6 +24,7 @@ export class RiwayatPage implements OnInit {
     this.allDates = this.transactionService.dates;
   }
 
+  
   filterRiwayat(date: any): any[] {
     var temp_riwayat: any[] = [];
     for (let i = 0; i < this.riwayat.length; i++) {
@@ -54,7 +55,7 @@ export class RiwayatPage implements OnInit {
     const h = date.day;
     const d = date.date;
     const m = date.month;
-    const y = date.year
+    const y = date.year;
     return this.lstDay[h] + ', ' + d + ' ' + this.lstMonth[m - 1] + ' ' + y;
   }
 }

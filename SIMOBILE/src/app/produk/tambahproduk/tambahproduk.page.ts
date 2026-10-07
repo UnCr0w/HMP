@@ -42,8 +42,6 @@ export class TambahprodukPage implements OnInit {
       this.pesan = "Stok tidak boleh negatif.";
     } else if (this.new_kategori == "") {
       this.pesan = "kategori tidak boleh kosong.";
-    } else if (this.new_url == "") {
-      this.pesan = "Link foto tidak boleh kosong.";
     } else {
       this.productService.addProduct(
         this.new_nama,
@@ -61,8 +59,12 @@ export class TambahprodukPage implements OnInit {
       this.new_kategori = "";
       this.new_url = "";
 
-      //this.router.navigate(['/produk']);
+      
     }
+  }
+
+  routerProduk(){
+    this.router.navigate(['/produk']);
   }
 
 }

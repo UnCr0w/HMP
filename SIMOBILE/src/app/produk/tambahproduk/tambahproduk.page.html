@@ -72,7 +72,7 @@
       <ion-item>
         <ion-button id="btnSimpan" (click)="addProduk()">Simpan
           <ion-alert trigger="btnSimpan" header="Tambah Produk" message="{{pesan}}"
-            [buttons]="alertButtons"></ion-alert>
+            [buttons]="alertButtons" (click)="routerProduk()"></ion-alert>
         </ion-button>
       </ion-item>
     </ion-card-content>

@@ -14,13 +14,20 @@
     </ion-toolbar>
   </ion-header>
 
+  <!-- <ion-label>{{riwayat.length}}</ion-label> -->
   <ion-list>
-    <div *ngFor="let date of allDates">
+    <div *ngFor="let date of allDates" class="card-container">
       <ion-label>{{formatInd(date)}}</ion-label>
       <ion-card *ngFor="let transaksi of filterRiwayat(date)" routerLink="detailriwayat/{{transaksi.id}}">
-        <ion-item>id: {{transaksi.id}}</ion-item>
-        <ion-item>Jumlah Produk: {{transaksi.items.length}}</ion-item>
-        <ion-item>Rp.{{transaksi.totalHarga}}</ion-item>
+        <ion-item><span>Id</span>:&nbsp;
+          {{transaksi.id}}
+        </ion-item>
+        <ion-item><span>Jumlah Produk</span>:&nbsp;
+          {{transaksi.items.length}}
+        </ion-item>
+        <ion-item><span>Total Harga</span>:&nbsp;
+          Rp.{{transaksi.totalHarga}}
+        </ion-item>
       </ion-card>
     </div>
   </ion-list>

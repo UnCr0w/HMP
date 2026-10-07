@@ -371,7 +371,7 @@ export class Transaction {
 
         var h = tgl.getDay();
         var d = tgl.getDate();
-        var m = tgl.getMonth();
+        var m = tgl.getMonth() + 1;
         var y = tgl.getFullYear();
         var newDate = h + '-' + d + ' ' + m + '-' + y;
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from '../../services/cart';
 import { Transaction } from '../../services/transaction';
 import { Product } from '../../services/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-keranjang',
@@ -14,7 +15,7 @@ export class KeranjangPage implements OnInit {
   pesan: string = "Transaksi berhasil dilakukan.";
   public alertButtons = ['OK'];
   constructor(public cartService: Cart, private transactionService: Transaction,
-    private productService: Product) { }
+    private productService: Product, private router: Router) { }
 
   ngOnInit() {
   }
@@ -35,9 +36,14 @@ export class KeranjangPage implements OnInit {
     }
 
     this.cartService.clearCart();
+    this.router.navigate(['/produk']);
   }
   hapus(id: number) {
     this.cartService.deleteItem(id);
+  }
+
+  routerProduk(){
+    this.router.navigate(['/produk']);
   }
 
 

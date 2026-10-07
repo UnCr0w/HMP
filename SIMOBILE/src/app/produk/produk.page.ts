@@ -19,6 +19,7 @@ export class ProdukPage implements OnInit {
   public temp_product: any[] = [];
 
   openedKeranjang: boolean = false;
+  openedAddProduct: boolean = false;
   problemQty: boolean = false;
   pesan: string = "";
   public alertButtons = ['OK'];
@@ -85,7 +86,7 @@ export class ProdukPage implements OnInit {
 
   checkQty() {
     for (let i = 0; i < this.products.length; i++) {
-      if (!this.qty[this.products[i].id]) {
+      if (this.qty[this.products[i].id] == null) {
         this.qty[this.products[i].id] = 1;
       }
     }
@@ -135,10 +136,13 @@ export class ProdukPage implements OnInit {
   }
 
   totalItem(): number {
-    if (this.openedKeranjang == true) {
+    if (this.openedKeranjang) {
       this.updateQty();
       this.problemQty = false;
       this.openedKeranjang = false;
+    } else if (this.openedAddProduct){
+      this.establishQty();
+      this.openedAddProduct = false; 
     }
     return this.cartService.getTotalItem();
   }

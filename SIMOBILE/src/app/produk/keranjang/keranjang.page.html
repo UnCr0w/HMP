@@ -38,6 +38,6 @@
   <ion-button id="btnTransaksi" expand="block" *ngIf="cartService.buyItems.length > 0" (click)="checkout()">
     Konfirmasi Transaksi
     <ion-alert trigger="btnTransaksi" header="Transaksi"
-          message="{{pesan}}" [buttons]="alertButtons" routerLink='/produk'></ion-alert>
+          message="{{pesan}}" [buttons]="alertButtons" (click)="routerProduk()"></ion-alert>
   </ion-button>
 </ion-content>

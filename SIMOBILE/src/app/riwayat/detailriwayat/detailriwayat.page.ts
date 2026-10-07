@@ -20,7 +20,7 @@ export class DetailriwayatPage implements OnInit {
   constructor(private route: ActivatedRoute, private transactionService: Transaction) { }
 
   ngOnInit() {
-    this.riwayat = this.transactionService.history;
+    this.riwayat = this.transactionService.getHistory();
     this.route.params.subscribe(params => {
       this.id = params['id'] - 1;
     })

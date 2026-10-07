@@ -33,7 +33,7 @@
       </ion-input>
       <ion-icon name="search-outline"></ion-icon>
 
-      <ion-button slot="end" id="btnTambahProduk" routerLink="tambahproduk">
+      <ion-button slot="end" id="btnTambahProduk" routerLink="tambahproduk" [disabled]="totalItem() != 0" (click)="openedAddProduct = true; ">
         <!-- Tambah -->
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
