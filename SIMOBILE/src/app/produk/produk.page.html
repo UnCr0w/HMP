@@ -41,8 +41,8 @@
   </div>
 
   <div id="card-container">
-    <ion-card *ngFor="for let product of filter(); let i = index" class="card-product">
-      <ion-card-header routerLink="detailproduk/{{product.id}}">
+    <ion-card *ngFor="let product of filter(); let i = index" class="card-product">
+      <ion-card-header routerLink="{{routerDetail(product)}}">
         <ion-item>
           {{product.nama}}
           <ion-chip color="{{badge(product.kategori)}}">
