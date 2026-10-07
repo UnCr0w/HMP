@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Product } from '../services/product';
+import { Transaction } from '../services/transaction';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() { }
+  constructor(private product:Product, private transaction:Transaction) { }
 
   isDarkMode: boolean = false
+  products: any[] = this.product.products
+  transactionHistory: any[] = this.transaction.getHistory()
+  todayDate: string = new Date().toLocaleTimeString()
 
   changeMode() {
     if (this.isDarkMode)
@@ -18,4 +23,6 @@ export class HomePage {
     else
       document.documentElement.classList.remove('ion-palette-dark')
   }
+
+
 }

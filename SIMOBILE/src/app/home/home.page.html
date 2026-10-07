@@ -20,16 +20,44 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
-  </div>
+  <ion-accordion-group expand="inset">
+    <ion-label>Ringkasan</ion-label>
+    <ion-accordion>
+      <ion-item slot="header" color="light">
+        <ion-label>Jumlah produk</ion-label>
+      </ion-item>
+
+      <ion-list slot="content">
+            <ion-item *ngFor="let product of products">
+              <ion-label>{{ product.nama }}</ion-label>
+              <ion-label>Qty: {{product.stok}}</ion-label>
+            </ion-item>
+          </ion-list>
+    </ion-accordion>
+
+    <ion-accordion>
+      <ion-item slot="header" color="light">
+        <ion-label>Total transaksi hari ini</ion-label>
+      </ion-item>
+
+      <ion-list slot="content">
+            <ion-item *ngFor="let transaction of transactionHistory">
+
+            </ion-item>
+          </ion-list>
+    </ion-accordion>
+
+    <ion-accordion>
+      <ion-item slot="header" color="light">
+        <ion-label>Produk terlaris</ion-label>
+      </ion-item>
+
+      <ion-list slot="content">
+            <ion-item *ngFor="let transaction of transactionHistory">
+
+            </ion-item>
+          </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
+
 </ion-content>
