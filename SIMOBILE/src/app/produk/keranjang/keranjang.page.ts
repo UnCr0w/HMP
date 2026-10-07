@@ -3,6 +3,7 @@ import { Cart } from '../../services/cart';
 import { Transaction } from '../../services/transaction';
 import { Product } from '../../services/product';
 import { Router } from '@angular/router';      
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-keranjang',
@@ -13,9 +14,10 @@ import { Router } from '@angular/router';
 export class KeranjangPage implements OnInit {
 
   pesan: string = "Transaksi berhasil dilakukan.";
+  animasiJalan: boolean = false;
   public alertButtons = ['OK'];
   constructor(public cartService: Cart, private transactionService: Transaction,
-    private productService: Product, private router: Router) { }
+    private productService: Product, private router: Router, private animationCtrl: AnimationController) { }
 
   ngOnInit() {
   }
@@ -38,7 +40,31 @@ export class KeranjangPage implements OnInit {
     this.router.navigate(['/produk']);
   }
   hapus(id: number) {
-    this.cartService.deleteItem(id);
+    if (this.animasiJalan) {
+      return;
+    }
+    this.animasiJalan = true;
+
+    const elemen = document.querySelector('#item-' + id) as HTMLElement;
+    const tinggi = elemen.offsetHeight;
+
+    const animation = this.animationCtrl
+      .create()
+      .addElement(elemen)
+      .duration(500)
+      .easing('ease-in-out')
+      .keyframes([
+        { offset: 0,   transform: 'translateX(0)',     opacity: 1, height: tinggi + 'px', minHeight: tinggi + 'px' },
+        { offset: 0.6, transform: 'translateX(-100%)', opacity: 0, height: tinggi + 'px', minHeight: tinggi + 'px' },
+        { offset: 1,   transform: 'translateX(-100%)', opacity: 0, height: '0px',         minHeight: '0px' },
+      ]);
+
+    animation.onFinish(() => {
+      this.cartService.deleteItem(id); 
+      this.animasiJalan = false;
+    });
+
+    animation.play();
   }
 
   routerProduk(){
