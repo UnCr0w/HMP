@@ -7,7 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
+<<<<<<< Updated upstream
 <ion-content class="ion-padding">
+=======
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">riwayat</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <ion-label>{{riwayat.length}}</ion-label> -->
+<!-- <ion-content class="ion-padding">
+>>>>>>> Stashed changes
   
   <p class="ion-text-center" *ngIf="transactionService.getHistory().length === 0">
     Belum ada transaksi hari ini.
@@ -31,8 +43,13 @@
     </ion-card-content>
   </ion-card>
 
+<<<<<<< Updated upstream
   <!-- <ion-label>{{riwayat.length}}</ion-label> -->
   <ion-list id="riwayat-list">
+=======
+  <ion-label>{{riwayat.length}}</ion-label>-->
+  <ion-list id="riwayat-list"> 
+>>>>>>> Stashed changes
     <div *ngFor="let date of allDates" class="card-container">
       <ion-label>{{formatInd(date)}}</ion-label>
       <ion-card *ngFor="let transaksi of filterRiwayat(date)" routerLink="detailriwayat/{{transaksi.id}}">
